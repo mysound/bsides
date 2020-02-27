@@ -7,13 +7,23 @@
 			@slot('parent') Main @endslot
 			@slot('active') Products @endslot
 		@endcomponent
-		<hr>
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<a href="{{ route('admin.product.create') }}" class="btn btn-primary">+ Add Product</a>
-				<br><br>
+			</div>
+			<div class="col-md-4 text-center">
+				<a href="{{ route('admin.export') }}" class="btn btn-secondary">EXPORT</a>				
+			</div>
+			<div class="col-md-4 text-right">
+				<a href="{{ route('admin.import') }}" class="btn btn-success">IMPORT</a>				
 			</div>
 		</div>
+		<br>
+		@if (session('status'))
+		    <div class="alert alert-success">
+		        {{ session('status') }}
+		    </div>
+		@endif
 		<table class="table table-striped">
 			<thead>
 				<th></th>
@@ -37,14 +47,14 @@
 						<td>{{ $product->name }}</td>
 						<td>{{ $product->title }}</td>
 						<td>{{ $product->quantity }}</td>
-						<td>$ {{ $product->price }}</td>
+						<td>{{ $product->price }}</td>
 						<td>{{ $product->published }}</td>
-						<td><a href="{{ route('admin.product.edit', $product->id) }}">Edit</a></td>
+						<td><a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
 						<td class="text-right">
 							<form method="POST" action="{{ route('admin.product.destroy', $product) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
 								@method('DELETE')
 								@csrf
-								<button type="submit" class="btn btn-danger">Delete</button>
+								<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 							</form>
 						</td>
 					</tr>
