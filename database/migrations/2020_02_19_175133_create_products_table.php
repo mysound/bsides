@@ -24,9 +24,15 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique()->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->text('subtype_description')->nullable();
+            $table->text('optional_description')->nullable();
             $table->decimal('price', 8, 2);
+            $table->decimal('weight', 3, 2)->nullable();
             $table->string('upc')->nullable();
+            $table->string('catalog_number')->nullable();
+            $table->string('ebayitem_id')->nullable();
             $table->integer('quantity')->default(0);
+            $table->integer('item_qty')->nullable();
             $table->date('release_date')->nullable();
             $table->boolean('availability')->nullable();
             $table->boolean('published')->nullable();

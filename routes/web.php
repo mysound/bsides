@@ -17,6 +17,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::resource('/ganre', 'GanresController', ['as' => 'admin']);
 	Route::resource('/brand', 'BrandsController', ['as' => 'admin']);
 	Route::resource('/product', 'ProductsController', ['as' => 'admin']);
+	Route::get('/export', 'ExportController@index')->name('admin.export');
+	Route::get('/export/main', 'ExportController@mainCatalog')->name('admin.export.main');
+	Route::get('/import', 'ImportController@index')->name('admin.import');
+	Route::get('/import/maincreate', 'ImportController@mainCreate')->name('admin.import.maincreate');
+	Route::post('/import', 'ImportController@mainStore')->name('admin.import.mainstore');
 });
 
 Route::get('/', function () {
