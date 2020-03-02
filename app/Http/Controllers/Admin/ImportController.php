@@ -14,15 +14,19 @@ class ImportController extends Controller
     	return view('admin.import.index');
     }
 
-    public function mainCreate()
+    public function create(Request $request)
     {
-    	return view('admin.import.maincreate');
+    	return view('admin.import.create', [
+            'sku_title' => $request->sku
+        ]);
     }
 
-    public function mainStore(Request $request)
+    public function store(Request $request)
     {
-    	Excel::import(new ProductsImport, $request->file('import_file'));
+        $skutitle = $request->sku_title;
+
+    	Excel::import(new ProductsImport($skutitle), $request->file('import_file'));
 
     	return redirect()->route('admin.product.index')->with('status', 'The file was successfully imported');
-    } 
+    }
 }
