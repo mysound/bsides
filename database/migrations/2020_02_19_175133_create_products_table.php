@@ -34,6 +34,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->default(0);
             $table->integer('item_qty')->nullable();
             $table->date('release_date')->nullable();
+            $table->string('repertuare_key')->nullable();
             $table->boolean('availability')->nullable();
             $table->boolean('published')->nullable();
             $table->boolean('new_product')->nullable();

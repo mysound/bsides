@@ -20,14 +20,33 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($row): array
     {
+        $title = $this->nameTitle($row->name, $row->title, $row->category->title);
+        $maker = $this->makerTitle(substr($row->sku, 0, 4));
+        $date = $this->transformDate($row->release_date);
+        $description = $this->description($row, $title, $maker, $date);
+        $category = $this->categoriTitle($row->category_id);
+        
+        if(($category == 'RU:176984') or ($category == 'RU:617')) {
+            $shipping = 42171;
+        } else {
+            $shipping = 41869;
+        }
+
     	return [
 	    	$row->sku,
-            $row->name,
-            $row->title,
-            $row->short_description,
-	    	$row->price,
+            $title,
+            'RU',
 	    	$row->upc,
-            $row->quantity
+            $row->upc,
+            $maker,
+            'Non applicable',
+            $description,
+            'New',
+            $row->quantity,
+	    	$row->price,
+            $category,
+            'Images',
+            $shipping
 	    ];
     }
 
@@ -35,13 +54,77 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             'SKU',
-            'Name',
             'Title',
-            'ShortDescription',
-            'Price',
+            'Language',
             'UPC',
-            'Quantity'
-
+            'EAN',
+            'Brand',
+            'MPN',
+            'Description',
+            'Condition',
+            'Quantity',
+            'Price',
+            'Categories',
+            'Product Pictures',
+            'Shipping Profile'
         ];
+    }
+
+    public function nameTitle($name, $title, $type)
+    {
+        $name_title = $name.' - '.$title.' ('.$type.') New';
+        return $name_title;
+    }
+
+    public function makerTitle($value)
+    {
+        switch ($value):
+        case ($value == 'BS-C'):
+            $maker = '';
+            break;
+        case ($value == 'WMR-'):
+            $maker = 'Warner Music';
+            break;
+        case (($value == 'UMG-') or ($value == 'UMRU')):
+            $maker = 'Universal Music';
+            break;
+        endswitch;
+        return $maker;
+    }
+
+    public function transformDate($value, $format = 'd.m.Y')
+    {
+        try {
+            return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
+        } catch (\ErrorException $e) {
+            return \Carbon\Carbon::parse($value)->format($format);
+        }
+    }
+
+    public function description($row, $title, $maker, $date)
+    {
+        $brand = '';
+        if (!empty($row->brand_id)) {
+            $brand = $row->brand->title;
+        }
+        $description = '<h1>'.$title.'</h1><ul><li>Состояние: Новый</li><li>'.$row->name.'</li><li>'.$row->subtype_description.'</li><li>'.$row->short_description.'</li><li>Количество дисков: '.$row->item_qty.'</li><li>Производитель: '.$maker.'</li><li>Лейбл: '.$brand.'</li><li>'.$date.'</li><li>'.$row->repertuare_key.'</li><li></li><li>UPC: '.$row->upc.'</li></ul><p>Пожалуйста, уточняйте наличие перед покупкой. Спасибо</p>';
+        return $description;
+    }
+
+    public function categoriTitle($category_id)
+    {
+        switch ($category_id):
+        case ($category_id == 2):
+            $category = 'RU:176985';
+            break;
+        case (($category_id == 3) or ($category_id == 4)):
+            $category = 'RU:176984';
+            break;
+        case (($category_id == 6) or ($category_id == 7)):
+            $category = 'RU:617';
+            break;
+        endswitch;
+
+        return $category;
     }
 }

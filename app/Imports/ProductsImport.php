@@ -59,7 +59,7 @@ class ProductsImport implements ToModel, WithHeadingRow
                     'optional_description'  => $row['composer'],
                     'weight'                => $row['weight'],
                     'catalog_number'        => $row['catalognumber'],
-
+                    'repertuare_key'        => $row['repertuarekey']
                 ]
             );
 
@@ -82,7 +82,7 @@ class ProductsImport implements ToModel, WithHeadingRow
     {
         $price = 0;
 
-        if($skutitle == 'UMG-') {
+        if(($skutitle == 'UMG-') or ($skutitle == 'UMRU-')) {
             if($catid == '2') {
                 switch ($cost):
                 case (($cost >= 0) and ($cost <= 1000)):
@@ -97,7 +97,10 @@ class ProductsImport implements ToModel, WithHeadingRow
                 endswitch;
             } else {
                 switch ($cost):
-                case (($cost >= 0) and ($cost <= 2000)):
+                case (($cost >= 0) and ($cost <= 600)):
+                    $price = $cost + ($cost*(60/100));
+                    break;
+                case (($cost >= 601) and ($cost <= 2000)):
                     $price = $cost + ($cost*(50/100));
                     break;
                 case (($cost >= 2001) and ($cost <= 3000)):
