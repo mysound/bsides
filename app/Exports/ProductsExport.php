@@ -22,8 +22,7 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
     {
         $title = $this->nameTitle($row->name, $row->title, $row->category->title);
         $maker = $this->makerTitle(substr($row->sku, 0, 4));
-        $date = $this->transformDate($row->release_date);
-        $description = $this->description($row, $title, $maker, $date);
+        $description = $this->description($row, $title, $maker);
         $category = $this->categoriTitle($row->category_id);
         
         if(($category == 'RU:176984') or ($category == 'RU:617')) {
@@ -94,20 +93,24 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
 
     public function transformDate($value, $format = 'd.m.Y')
     {
-        try {
-            return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
-        } catch (\ErrorException $e) {
-            return \Carbon\Carbon::parse($value)->format($format);
+        if(\DateTime::createFromFormat('d.m.Y H:i:s', $value)) {
+            try {
+                return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
+            } catch (\ErrorException $e) {
+                return \Carbon\Carbon::parse($value)->format($format);
+            } 
+        } else {
+            return $value;
         }
     }
 
-    public function description($row, $title, $maker, $date)
+    public function description($row, $title, $maker)
     {
         $brand = '';
         if (!empty($row->brand_id)) {
             $brand = $row->brand->title;
         }
-        $description = '<h1>'.$title.'</h1><ul><li>Состояние: Новый</li><li>'.$row->name.'</li><li>'.$row->subtype_description.'</li><li>'.$row->short_description.'</li><li>Количество дисков: '.$row->item_qty.'</li><li>Производитель: '.$maker.'</li><li>Лейбл: '.$brand.'</li><li>'.$date.'</li><li>'.$row->repertuare_key.'</li><li></li><li>UPC: '.$row->upc.'</li></ul><p>Пожалуйста, уточняйте наличие перед покупкой. Спасибо</p>';
+        $description = '<h1>'.$title.'</h1><ul><li>Состояние: Новый</li><li>'.$row->name.'</li><li>'.$row->subtype_description.'</li><li>'.$row->short_description.'</li><li>Количество дисков: '.$row->item_qty.'</li><li>Производитель: '.$maker.'</li><li>Лейбл: '.$brand.'</li><li>'.$row->repertuare_key.'</li><li>'.$this->transformDate($row->optional_description).'</li><li>UPC: '.$row->upc.'</li></ul><p>Пожалуйста, уточняйте наличие перед покупкой. Спасибо</p>';
         return $description;
     }
 
