@@ -9,10 +9,13 @@
 		@endcomponent
 		<div class="row">
 			<div class="col-md-4">
-				<form action="{{ route('admin.import.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal" onsubmit="if(confirm('SKU {{$sku_title}}?')){ return true }else{ return false }">
+				<form action="{{ route('admin.import.imgstore') }}" method="GET" class="form-horizontal">
                     @csrf
-					<input class="form-control" type="text" name="sku_title" value="{{ $sku_title ?? 'ERROR SKU TITLE'}}" readonly="">
-                    <input class="form-control" type="file" name="import_file">
+					<label for="">Start String</label>
+					<input class="form-control" type="text" name="startstr" placeholder="http://bsides.ru/img/" required="">
+					<br>
+					<label for="">End String</label>
+					<input class="form-control" type="text" name="endstr" placeholder=".jpg" required="">
                     <br>
                     <input class="btn btn-success" type="submit" value="Import">
                 </form>

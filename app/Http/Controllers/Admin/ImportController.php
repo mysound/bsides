@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Jobs\ImageImport;
 
 class ImportController extends Controller
 {
@@ -28,5 +29,20 @@ class ImportController extends Controller
     	Excel::import(new ProductsImport($skutitle), $request->file('import_file'));
 
     	return redirect()->route('admin.product.index')->with('status', 'The file was successfully imported');
+    }
+
+    public function imgcreate()
+    {
+        return view('admin.import.imgcreate');
+    }
+
+    public function imgstore(Request $request)
+    {
+        $startstr = $request->startstr;
+        $endstr = $request->endstr;
+        $products = \App\Product::doesntHave('images')->take(5)->get();
+        ImageImport::dispatch($products, $startstr, $endstr);
+
+        return redirect()->route('admin.product.index')->with('status', 'The queue successfully');
     }
 }

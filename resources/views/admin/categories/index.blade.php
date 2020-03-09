@@ -1,39 +1,54 @@
 @extends('admin.layouts.app-admin')
 
 @section('content')
-	
-	@component('admin.components.breadcrumb')
-		@slot('title') Category List @endslot
-		@slot('parent') Main @endslot
-		@slot('active') Categories @endslot
-	@endcomponent
-	<hr>
-	<a href="{{ route('admin.category.create') }}" class="btn btn-primary pull-right">Add New Category</a>
-	<hr>
-	<div class="container">
+	<div class="panel panel-default">
+		@component('admin.components.breadcrumb')
+			@slot('title') Category List @endslot
+			@slot('parent') Main @endslot
+			@slot('active') Categories @endslot
+		@endcomponent
 		<div class="row">
-			<div class="col-sm">id</div>
-			<div class="col-sm">Title</div>
-			<div class="col-sm">Parent_id</div>
-			<div class="col-sm">Edit</div>
-			<div class="col-sm">Delete</div>
+			<div class="col-md-4">
+				<a href="{{ route('admin.category.create') }}" class="btn btn-primary">+ Add New Category</a>
+			</div>
 		</div>
-		<hr>
-		@foreach($categories as $category)
-			<div class="row">
-				<div class="col-sm">{{ $category->id }}</div>
-				<div class="col-sm">{{ $category->title }}</div>
-				<div class="col-sm">{{ $category->parent_id }}</div>
-				<div class="col-sm"><a href="{{ route('admin.category.edit', $category->id) }}">Edit</a></div>
-				<div class="col-sm">
-					<form method="POST" action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<th>id</th>
+				<th>Title</th>
+				<th>Parent_id</th>
+				<th>Edit</th>
+				<th class="text-right">Delete</th>
+			</thead>
+			<tbody>
+				@forelse($categories as $category)
+				<tr>
+					<td>{{ $category->id }}</td>
+					<td>{{ $category->title }}</td>
+					<td>{{ $category->parent_id }}</td>
+					<td><a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
+					<td class="text-right">
+						<form method="POST" action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
 						@method('DELETE')
 						@csrf
-						<button type="submit" class="btn btn-primary">Delete</button>
+						<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 					</form>
-				</div>
-			</div>
-			<hr>
-		@endforeach
+					</td>
+				</tr>
+				@empty
+					<tr>
+						<td colspan="5" class="text-center"><h2>Empty</h2></td>
+					</tr>
+				@endforelse
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5">
+						<ul class="pagination pull-right"></ul>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
 	</div>
 @endsection

@@ -7,9 +7,12 @@
 			@slot('parent') Main @endslot
 			@slot('active') Ganres @endslot
 		@endcomponent
-		<hr>
-		<a href="{{ route('admin.ganre.create') }}" class="btn btn-primary pull-right">Add Ganre</a>
-		<br><br>
+		<div class="row">
+			<div class="col-md-4">
+				<a href="{{ route('admin.ganre.create') }}" class="btn btn-primary pull-right">+ Add Ganre</a>
+			</div>
+		</div>
+		<br>
 		<table class="table table-striped">
 			<thead>
 				<th>Title</th>
@@ -20,12 +23,12 @@
 				@forelse($ganres as $ganre)
 					<tr>
 						<td>{{ $ganre->title }}</td>
-						<td><a href="{{ route('admin.ganre.edit', $ganre->id) }}">Edit</a></td>
+						<td><a href="{{ route('admin.ganre.edit', $ganre->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
 						<td class="text-right">
 							<form method="POST" action="{{ route('admin.ganre.destroy', $ganre) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
 								@method('DELETE')
 								@csrf
-								<button type="submit" class="btn btn-danger">Delete</button>
+								<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 							</form>
 						</td>
 					</tr>

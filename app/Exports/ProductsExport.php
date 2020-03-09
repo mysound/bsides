@@ -24,6 +24,11 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
         $maker = $this->makerTitle(substr($row->sku, 0, 4));
         $description = $this->description($row, $title, $maker);
         $category = $this->categoriTitle($row->category_id);
+        $image = '';
+        if ($row->images->first()) {
+            $image = $row->images->first()->title;
+        }
+
         
         if(($category == 'RU:176984') or ($category == 'RU:617')) {
             $shipping = 42171;
@@ -44,7 +49,7 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
             $row->quantity,
 	    	$row->price,
             $category,
-            'Images',
+            $image,
             $shipping
 	    ];
     }

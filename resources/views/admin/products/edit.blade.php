@@ -1,7 +1,7 @@
 @extends('admin.layouts.app-admin')
 
 @section('content')
-	<div class="container panel panel-default">
+	<div class="panel panel-default">
 		@component('admin.components.breadcrumb')
 			@slot('title') Edit a product @endslot
 			@slot('parent') Main @endslot

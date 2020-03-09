@@ -1,7 +1,7 @@
 @extends('admin.layouts.app-admin')
 
 @section('content')
-	<div class="container panel panel-default">
+	<div class="panel panel-default">
 		@component('admin.components.breadcrumb')
 			@slot('title') Product List @endslot
 			@slot('parent') Main @endslot
@@ -26,7 +26,7 @@
 		@endif
 		<table class="table table-striped">
 			<thead>
-				<th></th>
+				<th>Img</th>
 				<th>Name / Artist</th>
 				<th>Title</th>
 				<th>Qty</th>
