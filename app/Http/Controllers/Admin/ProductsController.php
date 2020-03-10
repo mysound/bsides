@@ -16,10 +16,35 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $products = new Product;
+
+        if($request->has('searchField')) {
+            $products = $products->where('name', 'LIKE', '%' . $request->searchField. '%')
+                                    ->orwhere('title', 'LIKE', '%' . $request->searchField. '%')
+                                    ->orwhere('upc', $request->searchField);
+        }
+
+        if($request->has('sortType')) {
+            $products = $products->orderBy('price', $request->sortType);
+        }
+
+        if($request->noImg == true) {
+            $products = $products->doesntHave('images');
+        }
+
+        $products = $products->paginate(10)->appends([
+            'sortType'      => $request->sortType,
+            'noImg'         => $request->noImg,
+            'searchField'   => $request->searchField
+        ]);
+
         return view('admin.products.index', [
-            'products' => Product::orderBy('created_at', 'desc')->paginate(10)
+            'products'      => $products,
+            'sortType'      => $request->sortType,
+            'noImg'         => $request->noImg,
+            'searchField'   => $request->searchField
         ]);
     }
 

@@ -5,7 +5,7 @@
 		@component('admin.components.breadcrumb')
 			@slot('title') Product List @endslot
 			@slot('parent') Main @endslot
-			@slot('active') Products @endslot
+			@slot('active') Products <span class="badge badge-pill badge-info" >{{ $products->total() }}</span> @endslot
 		@endcomponent
 		<div class="row">
 			<div class="col-md-4">
@@ -26,11 +26,24 @@
 		@endif
 		<table class="table table-striped">
 			<thead>
-				<th>Img</th>
+				<th>
+					@if($noImg)
+						<a href="{{ route('admin.product.index', ['noImg' => false]) }}">Images</a>
+					@else
+						<a href="{{ route('admin.product.index', ['noImg' => true]) }}">No Images</a>
+					@endif
+				</th>
 				<th>Name / Artist</th>
 				<th>Title</th>
 				<th>Qty</th>
-				<th>Price</th>
+				<th>
+					@if($sortType == 'ASC')
+						<a href="{{ route('admin.product.index', ['sortType' => 'DESC']) }}">Price &#9650;</a>
+					@elseif($sortType == 'DESC' or $sortType == '')
+						<a href="{{ route('admin.product.index', ['sortType' => 'ASC']) }}">Price @if(!$sortType == '')&#9660;@endif</a>
+					@endif
+				</th>
+				<th>Category</th>
 				<th>Published</th>
 				<th>Edit</th>
 				<th class="text-right">Action</th>
@@ -48,6 +61,7 @@
 						<td>{{ $product->title }}</td>
 						<td>{{ $product->quantity }}</td>
 						<td>{{ $product->price }}</td>
+						<td>{{ $product->category->title }}</td>
 						<td>{{ $product->published }}</td>
 						<td><a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
 						<td class="text-right">
@@ -60,13 +74,13 @@
 					</tr>
 				@empty
 					<tr>
-						<td colspan="8" class="text-center"><h2>Empty</h2></td>
+						<td colspan="9" class="text-center"><h2>Empty</h2></td>
 					</tr>
 				@endforelse
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="8">
+					<td colspan="9">
 						<ul class="pagination pull-right">{{ $products->links() }}</ul>
 					</td>
 				</tr>

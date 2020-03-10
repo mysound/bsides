@@ -18,7 +18,7 @@
 				<th>id</th>
 				<th>Title</th>
 				<th>Parent_id</th>
-				<th>Edit</th>
+				<th class="text-right">Edit</th>
 				<th class="text-right">Delete</th>
 			</thead>
 			<tbody>
@@ -27,7 +27,7 @@
 					<td>{{ $category->id }}</td>
 					<td>{{ $category->title }}</td>
 					<td>{{ $category->parent_id }}</td>
-					<td><a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
+					<td class="text-right"><a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
 					<td class="text-right">
 						<form method="POST" action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
 						@method('DELETE')
