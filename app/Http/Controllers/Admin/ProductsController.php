@@ -7,6 +7,7 @@ use App\Product;
 use App\Category;
 use App\Brand;
 use App\Ganre;
+use App\Vendor;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -162,5 +163,20 @@ class ProductsController extends Controller
         $product->delete();
 
         return redirect()->route('admin.product.index');
+    }
+
+    public function quantity() {
+        return view('admin.products.quanity', [
+            'vendors' => Vendor::all()
+        ]);
+    }
+
+    public function nullifyQuantity(Request $request) {
+
+        $products = Product::where('sku', 'LIKE', $request->sku. '%')
+                                ->update(['quantity' => 0]);
+
+        return redirect()->route('admin.product.index')
+                            ->with('status', 'Quantity changed successfully');;
     }
 }

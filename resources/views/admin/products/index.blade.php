@@ -8,14 +8,17 @@
 			@slot('active') Products <span class="badge badge-pill badge-info" >{{ $products->total() }}</span> @endslot
 		@endcomponent
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<a href="{{ route('admin.product.create') }}" class="btn btn-primary">+ Add Product</a>
 			</div>
-			<div class="col-md-4 text-center">
+			<div class="col-md-3">
 				<a href="{{ route('admin.export') }}" class="btn btn-secondary">EXPORT</a>				
 			</div>
-			<div class="col-md-4 text-right">
+			<div class="col-md-3">
 				<a href="{{ route('admin.import') }}" class="btn btn-success">IMPORT</a>				
+			</div>
+			<div class="col-md-3 text-right">
+				<a href="{{ route('admin.product.quantity') }}" class="btn btn-info">NULLIFY QUANTITY</a>				
 			</div>
 		</div>
 		<br>

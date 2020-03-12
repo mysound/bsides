@@ -5,6 +5,7 @@
 		<li><a href="{{ route('admin.category.index') }}">Categories</a></li>
 		<li><a href="{{ route('admin.product.index') }}">Products</a></li>
 		<li><a href="{{ route('admin.brand.index') }}">Brands</a></li>
-		<li><a href="{{ route('admin.ganre.index') }}">Ganre</a></li>
+		<li><a href="{{ route('admin.ganre.index') }}">Ganres</a></li>
+		<li><a href="{{ route('admin.vendor.index') }}">Vendors</a></li>
 	</ul>
 @endsection

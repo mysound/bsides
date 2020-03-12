@@ -3,14 +3,14 @@
 @section('content')
 	<div class="panel panel-default">
 		@component('admin.components.breadcrumb')
-			@slot('title') Creating a ganre @endslot
+			@slot('title') Creating a vendor @endslot
 			@slot('parent') Main @endslot
-			@slot('active') Ganres @endslot
+			@slot('active') Vendors @endslot
 		@endcomponent
 		<hr>
-		<form method="POST" class="form-horizontal" action="{{ route('admin.ganre.store') }}">
+		<form method="POST" class="form-horizontal" action="{{ route('admin.vendor.store') }}">
 			@csrf
-			@include('admin.ganres.partials.form')
+			@include('admin.vendors.partials.form')
 		</form>
 	</div>
 @endsection

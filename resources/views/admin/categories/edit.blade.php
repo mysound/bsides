@@ -6,7 +6,7 @@
 		@slot('parent') Main @endslot
 		@slot('active') Categories @endslot
 	@endcomponent
-	<div class="container panel panel-default">
+	<div class="panel panel-default">
 		<hr>
 		<form method="POST" class="form-horizontal" action="{{ route('admin.category.update', $category) }}">
 			@method('PUT')

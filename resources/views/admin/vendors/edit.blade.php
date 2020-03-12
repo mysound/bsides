@@ -3,15 +3,15 @@
 @section('content')
 	<div class="panel panel-default">
 		@component('admin.components.breadcrumb')
-			@slot('title') Edit a ganre @endslot
+			@slot('title') Edit a vendor @endslot
 			@slot('parent') Main @endslot
-			@slot('active') Ganres @endslot
+			@slot('active') Vendors @endslot
 		@endcomponent
 		<hr>
-		<form method="POST" class="form-horizontal" action="{{ route('admin.ganre.update', $ganre) }}">
+		<form method="POST" class="form-horizontal" action="{{ route('admin.vendor.update', $vendor) }}">
 			@method('PUT')
 			@csrf
-			@include('admin.ganres.partials.form')
+			@include('admin.vendors.partials.form')
 		</form>
 	</div>
 @endsection
