@@ -18,6 +18,11 @@
 			</div>
 			<div class="col-md-4">
 				<ul>
+					<li style="margin: 10px;"><a href="{{ route('admin.import.create', ['sku' => 'ebay']) }}" class="btn btn-success btn-block">Import ebay File Exchange</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<ul>
 					<li style="margin: 10px;"><a href="{{ route('admin.import.imgcreate') }}" class="btn btn-warning btn-block">Import Images</a></li>
 				</ul>
 			</div>

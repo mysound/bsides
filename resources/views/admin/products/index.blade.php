@@ -48,6 +48,7 @@
 				</th>
 				<th>Category</th>
 				<th>Published</th>
+				<th>Ebay ItemID</th>
 				<th>Edit</th>
 				<th class="text-right">Action</th>
 			</thead>
@@ -66,6 +67,7 @@
 						<td>{{ $product->price }}</td>
 						<td>{{ $product->category->title }}</td>
 						<td>{{ $product->published }}</td>
+						<td>{{ $product->ebayitem_id }}</td>
 						<td><a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
 						<td class="text-right">
 							<form method="POST" action="{{ route('admin.product.destroy', $product) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">

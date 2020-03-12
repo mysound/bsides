@@ -35,6 +35,18 @@ class ProductsImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
+
+        if($this->skutitle == 'ebay') {
+
+            $product = Product::where('sku', $row['customlabel'])->first();
+
+            if($product) {
+                $product->ebayitem_id = $row['itemid'];
+            }
+
+            return $product;
+        }
+
         $sku = $this->skutitle.$row['barcode'];
 
         $product = Product::where('sku', $sku)->first();
