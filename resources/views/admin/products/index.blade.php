@@ -79,13 +79,13 @@
 					</tr>
 				@empty
 					<tr>
-						<td colspan="9" class="text-center"><h2>Empty</h2></td>
+						<td colspan="10" class="text-center"><h2>Empty</h2></td>
 					</tr>
 				@endforelse
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="9">
+					<td colspan="10">
 						<ul class="pagination pull-right">{{ $products->links() }}</ul>
 					</td>
 				</tr>
