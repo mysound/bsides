@@ -14,8 +14,12 @@ class ExportController extends Controller
     	return view('admin.export.index');
     }
 
-    public function mainCatalog()
+    public function mainCatalog(Request $request)
     {
+    	if($request->ebayitem) {
+    		return Excel::download(new ProductsExport(true), 'products.xlsx');
+    	}
+
     	return Excel::download(new ProductsExport, 'products.xlsx');
     }
 }

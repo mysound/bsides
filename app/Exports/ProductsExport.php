@@ -10,11 +10,22 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class ProductsExport implements FromCollection, WithHeadings, WithMapping
 {
+
+    public function __construct($ebayitem = false)
+    {
+        $this->ebayitem = $ebayitem;
+    }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
+        if ($this->ebayitem) {
+            $products = Product::all();
+            $ebayitems = $products->where('ebayitem_id', null);
+
+            return $ebayitems;
+        }
         return Product::all();
     }
 
