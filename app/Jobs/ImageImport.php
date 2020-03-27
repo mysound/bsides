@@ -74,7 +74,7 @@ class ImageImport implements ShouldQueue
                             ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
                             ->encode('jpg',100);
                         $thumbnail = ImageInt::make($link)
-                            ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
+                            ->resize(200, null, function ($constraint) { $constraint->aspectRatio(); } )
                             ->encode('jpg',100);
                         Storage::disk('images')->put($imagetitle, $picture);
                         Storage::disk('thumbnails')->put($imagetitle, $thumbnail);

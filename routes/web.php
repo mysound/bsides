@@ -29,10 +29,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('/import/imgstore', 'ImportController@imgstore')->name('admin.import.imgstore');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::get('/', 'StoreController@index')->name('store.index');
+Route::get('/store/view/{product}', 'StoreController@view')->name('view.product');
+Route::get('/store', 'StoreController@shope')->name('store');
 
 Route::get('/home', 'HomeController@index')->name('home');
