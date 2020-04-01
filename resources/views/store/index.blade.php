@@ -2,21 +2,10 @@
 
 @section('content')
 	<div class="sidebar">
-		<div class="sidebar-row">GANRES</div>
+		@include('store.partials.ganres')
 		<div class="sidebar-line">
 			<ul>
-				<li><a href="#">Blues</a></li>
-				<li><a href="#">Classical</a></li>
-				<li><a href="#">Jazz</a></li>
-				<li><a href="#">Rock</a></li>
-				<li><a href="#">Electronic</a></li>
-				<li><a href="#">Rap & Hip Hop</a></li>
-				<li><a href="#">Soul, R&B, Funk</a></li>
-			</ul>
-		</div>
-		<div class="sidebar-line">
-			<ul>
-				<li><a href="#">Rolling Stone Top</a></li>
+				<li><a href="#">Rolling Stone Top 500</a></li>
 			</ul>
 		</div>
 		<div class="sidebar-row sidebar-row-top">ARTIST</div>
@@ -32,7 +21,7 @@
 				<li><a href="#">The Beatles</a></li>
 				<li><a href="#">Led Zeppelin</a></li>
 				<li><a href="#">The Rolling Stones</a></li>
-				<li><a href="#">See more...</a></li>
+				<li><a href="{{ route('all-artists') }}">See more...</a></li>
 			</ul>
 		</div>
 	</div>

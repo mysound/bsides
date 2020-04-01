@@ -14,10 +14,12 @@ class ProductsImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    private $skutitle, $currency_eur;
 
-    public function __construct($skutitle)
+    public function __construct($skutitle, $currency_eur = null)
     {
         $this->skutitle = $skutitle;
+        $this->currency_eur = $currency_eur;
     }
 
     public function transformDate($value, $format = 'Y-m-d')
@@ -78,6 +80,10 @@ class ProductsImport implements ToModel, WithHeadingRow
             if (!empty($row['labeldesc'])) {
                 $product->brand_id = $this->addBrand($row['labeldesc']);
             }
+
+            if (!empty($row['ganre_id'])) {
+                $product->ganre_id = $row['ganre_id'];
+            }
         }
 
         return $product;
@@ -126,7 +132,7 @@ class ProductsImport implements ToModel, WithHeadingRow
         } else {
             if($currency == 'EUR') {
                 $price = $cost + ($cost*(50/100));
-                $price = $price * 65;
+                $price = $price * $this->currency_eur;
             } else {
                 $price = $cost + ($cost*(50/100));
             }

@@ -697,6 +697,12 @@ footer {
 	border-color: #259d6d;
 }
 
+.li-key {
+	font-size: 30px;
+	color: #259d6d;
+	padding: 5px;
+}
+
 @media (max-width: 965px) {
 
 	h1 {

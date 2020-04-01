@@ -34,5 +34,6 @@ Auth::routes();
 Route::get('/', 'StoreController@index')->name('store.index');
 Route::get('/store/view/{product}', 'StoreController@view')->name('view.product');
 Route::get('/store', 'StoreController@shope')->name('store');
+Route::get('/store/all-artists', 'StoreController@allartist')->name('all-artists');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -24,9 +24,14 @@ class ImportController extends Controller
 
     public function store(Request $request)
     {
-        $skutitle = $request->sku_title;
+        $this->validate(request(), [
+            'import_file'  =>  'file|required'
+        ]);
 
-    	Excel::import(new ProductsImport($skutitle), $request->file('import_file'));
+        $skutitle = $request->sku_title;
+        $currency_eur = $request->currency_eur;
+
+    	Excel::import(new ProductsImport($skutitle, $currency_eur), $request->file('import_file'));
 
     	return redirect()->route('admin.product.index')->with('status', 'The file was successfully imported');
     }

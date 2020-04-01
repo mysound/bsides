@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use App\Ganre;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
     public function index()
     {
-    	return view('store.index');
+    	return view('store.index', [
+            'ganres' => Ganre::all()
+        ]);
     }
 
     public function view(Product $product)
@@ -23,6 +26,7 @@ class StoreController extends Controller
     public function shope(Request $request)
     {
         $catgories = Category::all();
+        $ganres = Ganre::all();
 
         $products = new Product;
 
@@ -30,14 +34,14 @@ class StoreController extends Controller
         $max_price = $request->max_price ? $request->max_price : 1000000;
 
         if($request->has('searchField')) {
-            $products = $products->where('name', 'LIKE', '%' . $request->searchField . '%');
+            $products = Product::where('name', 'LIKE', '%' . $request->searchField . '%');
 
             if($products->first() == null) {
-                $products = $products->where('title', 'LIKE', '%' . $request->searchField . '%');
+                $products = Product::where('title', 'LIKE', '%' . $request->searchField . '%');
             }
 
             if($products->first() == null) {
-                $products = $products->where('upc', $request->searchField);
+                $products = Product::where('upc', $request->searchField);
             }
         }
 
@@ -45,6 +49,8 @@ class StoreController extends Controller
             $query->whereIn('category_id', request()->category_id);
         })->when($request->has('sortType'), function ($query) {
             $query->orderBy('price', request()->sortType);
+        })->when($request->has('ganre_id'), function ($query) {
+            $query->where('ganre_id', request()->ganre_id);
         });
 
         if($request->has('min_price') or $request->has('max_price')) {
@@ -56,17 +62,29 @@ class StoreController extends Controller
             'sortType'      => $request->sortType,
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
-            'category_id'   => $request->category_id
+            'category_id'   => $request->category_id,
+            'ganre_id'     => $request->ganres_id
         ]);
 
     	return view('store.search',[
             'products'      => $products,
             'categories'    => $catgories,
+            'ganres'        => $ganres,
             'searchField'   => $request->searchField,
             'sortType'      => $request->sortType,
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
-            'category_id'   => $request->category_id      
+            'category_id'   => $request->category_id
     	]);
+    }
+
+    public function allartist ()
+    {
+        $products = Product::all();
+        $collection = $products->pluck('name')->unique();
+        $artists = $collection->groupBy(function ($item, $key) {
+            return substr($item, 0, 1);
+        });
+        return view('store.all-artists', ['artists' => $artists]);
     }
 }
