@@ -42,9 +42,9 @@
 			<div class="content-pagination">
 				<div class="content-filter">Фильтр: 
 					@if($sortType == 'ASC')
-						<a href="{{ route('store', ['sortType' => 'DESC', 'searchField' => $searchField, 'category_id' => $category_id]) }}">По цене <span class="fullver">(дешевле - дороже)</span> &#9650;</a>
+						<a href="{{ route('store', ['sortType' => 'DESC', 'searchField' => $searchField, 'category_id' => $category_id, 'top_rs' => $top_rs]) }}">По цене <span class="fullver">(дешевле - дороже)</span> &#9650;</a>
 					@elseif($sortType == 'DESC' or $sortType == '')
-						<a href="{{ route('store', ['sortType' => 'ASC', 'searchField' => $searchField, 'category_id' => $category_id]) }}">По цене <span class="fullver">@if(!$sortType == '')(дороже - дешевле)</span> &#9660;@endif</a>
+						<a href="{{ route('store', ['sortType' => 'ASC', 'searchField' => $searchField, 'category_id' => $category_id, 'top_rs' => $top_rs]) }}">По цене <span class="fullver">@if(!$sortType == '')(дороже - дешевле)</span> &#9660;@endif</a>
 					@endif
 				</div>
 				{{ $products->links('store.partials.pagination') }}

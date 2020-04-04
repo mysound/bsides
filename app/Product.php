@@ -10,7 +10,7 @@ use Str;
 class Product extends Model
 {
 
-    protected $fillable = ['category_id', 'sku', 'name', 'title', 'brand_id', 'ganre_id',  'slug', 'short_description', 'description', 'subtype_description', 'optional_description', 'price', 'weight', 'upc', 'catalog_number', 'ebayitem_id', 'quantity', 'item_qty', 'release_date', 'repertuare_key', 'availability', 'published', 'new_product', 'meta_title', 'meta_description', 'meta_keyword'];
+    protected $fillable = ['category_id', 'sku', 'name', 'title', 'brand_id', 'ganre_id',  'slug', 'short_description', 'description', 'subtype_description', 'optional_description', 'price', 'weight', 'upc', 'catalog_number', 'ebayitem_id', 'quantity', 'item_qty', 'release_date', 'repertuare_key', 'availability', 'published', 'new_product', 'meta_title', 'meta_description', 'meta_keyword', 'top_rs'];
 
     public function setNameAttribute($value)
     {

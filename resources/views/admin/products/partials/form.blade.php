@@ -78,6 +78,9 @@
 <input class="form-control" type="text" name="meta_keyword" placeholder="meta keyword, separate by comma" value="{{ $product->meta_keyword ?? "" }}" >
 
 <hr/>
+<label for="">Rolling Stone Top 500</label>
+<input class="form-control" type="text" name="top_rs" value="{{ $product->top_rs ?? "" }}" >
+<hr>
 
 <input class="btn btn-primary" type="submit" value="Save">
 

@@ -5,7 +5,7 @@
 		@include('store.partials.ganres')
 		<div class="sidebar-line">
 			<ul>
-				<li><a href="#">Rolling Stone Top 500</a></li>
+				<li><a href="{{ route('store', ['top_rs' => true]) }}">Rolling Stone Top 500</a></li>
 			</ul>
 		</div>
 		<div class="sidebar-row sidebar-row-top">ARTIST</div>

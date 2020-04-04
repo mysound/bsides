@@ -38,6 +38,7 @@ class CreateProductsTable extends Migration
             $table->boolean('availability')->nullable();
             $table->boolean('published')->nullable();
             $table->boolean('new_product')->nullable();
+            $table->integer('top_rs')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keyword')->nullable();

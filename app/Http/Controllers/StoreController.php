@@ -51,6 +51,8 @@ class StoreController extends Controller
             $query->orderBy('price', request()->sortType);
         })->when($request->has('ganre_id'), function ($query) {
             $query->where('ganre_id', request()->ganre_id);
+        })->when($request->has('top_rs'), function ($query) {
+            $query->whereNotNull('top_rs');
         });
 
         if($request->has('min_price') or $request->has('max_price')) {
@@ -63,7 +65,8 @@ class StoreController extends Controller
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
             'category_id'   => $request->category_id,
-            'ganre_id'     => $request->ganres_id
+            'ganre_id'      => $request->ganres_id,
+            'top_rs'        => $request->top_rs
         ]);
 
     	return view('store.search',[
@@ -74,7 +77,8 @@ class StoreController extends Controller
             'sortType'      => $request->sortType,
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
-            'category_id'   => $request->category_id
+            'category_id'   => $request->category_id,
+            'top_rs'        => $request->top_rs
     	]);
     }
 

@@ -54,6 +54,7 @@
 						<li><a href="#">Pink Floyd</a></li>
 						<li><a href="#">Deep Purple</a></li>
 						<li><a href="#">Led Zeppelin</a></li>
+						<li><a href="{{ route('all-artists') }}">See more...</a></li>
 					</ul>
 				</div>
 				<div class="flayout-menu-column">
