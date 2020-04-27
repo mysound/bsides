@@ -646,7 +646,12 @@ footer {
 }
 
 .cart-total-area {
-	grid-area: total
+	grid-area: total;
+}
+
+.cart-total {
+	background: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .br-cart {
@@ -667,15 +672,26 @@ footer {
 }
 
 .cart-item-title {
-	flex: 1 0 165px;
+	flex: 2 0 165px;
 }
 
 .cart-item-qty {
-	flex: 1;
+	flex: 1 0 100px;
+	font-size: 14px;
+	color: black;
+	padding-top: 18px;
 }
 
 .cart-item-price {
+	flex: 1 0 100px;
+	font-size: 14px;
+	color: black;
+	padding-top: 18px; 
+}
+
+.cart-item-delete {
 	flex: 1;
+	padding-top: 15px;
 }
 
 .btn {
@@ -701,6 +717,94 @@ footer {
 	font-size: 30px;
 	color: #259d6d;
 	padding: 5px;
+}
+
+.b-alert {
+	background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+    padding: 10px;
+    margin-bottom: 22px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.cart-item-form {
+	margin-bottom: 20px;
+	background: #f5f5f5;
+	border: 1px solid #CDCDCD;
+	border-radius: 3px;
+}
+
+.form-line {
+	border-bottom: 2px solid #fff;
+}
+
+.form-title {
+	padding: 20px;
+	font-size: 18px;
+	line-height: 40px;
+}
+
+.shipping-title {
+	background-color: #14b6cc;
+    color: #FFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.form-header-title {
+	color: black;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 20px;
+}
+
+.form-part {
+	padding-bottom: 20px;
+}
+
+.form-field {
+	margin-bottom: 5px;
+	padding: 0 10px;
+}
+
+.form-field-label {
+	display: inline-block;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+.form-field-input {
+	display: block;
+	width: 100%;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	height: 30px;
+	padding: 0 10px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+.form-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.form-flex-item {
+	flex: 1 0 auto;
+}
+
+.form-item-50 {
+	flex: 0 0 50%;
+}
+
+.form-item-100 {
+	width: 100%;
+	box-sizing: border-box;	
 }
 
 @media (max-width: 965px) {
@@ -823,5 +927,9 @@ footer {
 
 	.mver {
 		display: table;
+	}
+
+	.form-item-50 {
+		flex: 1 0 auto;
 	}
 }

@@ -49,6 +49,11 @@
 				</div>
 				{{ $products->links('store.partials.pagination') }}
 			</div>
+			@if (session('message'))
+			    <div class="b-alert">
+			        {{ session('message') }}
+			    </div>
+			@endif
 			<div class="content-store">
 				@foreach($products as $product)
 					<div class="content-store-item">
@@ -70,7 +75,9 @@
 							<div class="store-item-price">{{ round($product->price) }} руб.</div>
 							<div class="store-item-short">{{ Str::limit($product->short_description, 32) }}</div>
 							<div class="store-item-buy">
-								<form>
+								<form method="POST" action="{{ route('cart.store') }}">
+									@csrf
+									<input type="hidden" name="product_id" value="{{ $product->id }}">
 									<button>Купить</button>
 								</form>
 							</div>

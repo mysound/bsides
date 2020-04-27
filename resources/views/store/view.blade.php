@@ -35,7 +35,9 @@
 				<div class="item-price">
 					<div class="item-price-title">{{ round($product->price) }} руб.</div>
 					<div class="item-price-form">
-						<form>
+						<form method="POST" action="{{ route('cart.store') }}">
+							@csrf
+							<input type="hidden" name="product_id" value="{{ $product->id }}">
 							<input class="item-price-btn" type="submit" name="" value="Купить">
 						</form>
 					</div>
@@ -72,8 +74,10 @@
 							<div class="store-item-price">{{ round($item->price) }} руб.</div>
 							<div class="store-item-short">{{ Str::limit($item->short_description, 32) }}</div>
 							<div class="store-item-buy">
-								<form>
-									<button>Buy It Now</button>
+								<form method="POST" action="{{ route('cart.store') }}">
+									@csrf
+									<input type="hidden" name="product_id" value="{{ $item->id }}">
+									<button>Купить</button>
 								</form>
 							</div>
 						</div>

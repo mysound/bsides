@@ -27,10 +27,17 @@
 		</a>
 	</div>
 	<div class="nav-cart">
-		<a href="#" class="nav-cart-link">
-			<span class="nav-cart-img"></span>
-			<span class="nav-cart-count">0</span>
-		</a>
+		@if(Cart::count())
+			<a href="{{ route('cart') }}" class="nav-cart-link">
+				<span class="nav-cart-img"></span>
+				<span class="nav-cart-count">{{ Cart::count() }}</span>
+			</a>
+		@else
+			<span class="nav-cart-link">
+				<span class="nav-cart-img"></span>
+				<span class="nav-cart-count">{{ Cart::count() }}</span>
+			</span>
+		@endif
 	</div>
 </header>
 <div class="menu">

@@ -36,4 +36,9 @@ Route::get('/store/view/{product}', 'StoreController@view')->name('view.product'
 Route::get('/store', 'StoreController@shope')->name('store');
 Route::get('/store/all-artists', 'StoreController@allartist')->name('all-artists');
 
+Route::get('/store/cart', 'CartController@index')->name('cart');
+Route::post('/store/cart', 'CartController@store')->name('cart.store');
+Route::get('/store/cart/empty', 'CartController@empty')->name('cart.empty');
+Route::delete('/store/cart/destroy/{product}', 'CartController@destroy')->name('cart.destroy');
+
 Route::get('/home', 'HomeController@index')->name('home');

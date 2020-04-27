@@ -94,7 +94,7 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping
     public function makerTitle($value)
     {
         switch ($value):
-        case ($value == 'BS-C'):
+        case ($value == 'BSC-'):
             $maker = '';
             break;
         case ($value == 'WMR-'):
