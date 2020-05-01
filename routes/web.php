@@ -42,3 +42,5 @@ Route::get('/store/cart/empty', 'CartController@empty')->name('cart.empty');
 Route::delete('/store/cart/destroy/{product}', 'CartController@destroy')->name('cart.destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/order', 'OrdersController@store')->name('order.store');

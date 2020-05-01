@@ -30,13 +30,13 @@
 			<div class="content-blk content-blk-first"><a href="{{ route('store', ['category_id' => [2]]) }}"><span>VINYL RECORDS</span></a></div>
 			<div class="content-blk content-blk-second"><a href="{{ route('store', ['category_id' => [3, 4]]) }}"><span>CD & SACD</span></a></div>
 			<div class="content-blk content-blk-third"><a href="{{ route('store', ['category_id' => [6, 7]]) }}"><span>DVD & Blu-Ray</span></a></div>
-			{{-- <div class="content-blk-mm content4"><img class="content-img" src="9.jpg"></div>
-			<div class="content-blk-mm content5"><img class="content-img" src="62.jpg"></div>
-			<div class="content-blk-mm content6"><img class="content-img" src="82.jpg"></div>
-			<div class="content-blk-mm content7"><img class="content-img" src="22.jpg"></div>
-			<div class="content-blk-mm content8"><img class="content-img" src="box2.jpg"></div>
-			<div class="content-blk-mm content9"><img class="content-img" src="t.jpg"></div>
-			<div class="content-blk-mm content10"><img class="content-img" src="32.png"></div> --}}
+			{{-- <div class="content-blk-mm content4"><img class="content-img" src="storage/images/9.jpg"></div>
+			<div class="content-blk-mm content5"><img class="content-img" src="storage/images/62.jpg"></div>
+			<div class="content-blk-mm content6"><img class="content-img" src="storage/images/82.jpg"></div>
+			<div class="content-blk-mm content7"><img class="content-img" src="storage/images/22.jpg"></div>
+			<div class="content-blk-mm content8"><img class="content-img" src="storage/images/box2.jpg"></div>
+			<div class="content-blk-mm content9"><img class="content-img" src="storage/images/t.jpg"></div>
+			<div class="content-blk-mm content10"><img class="content-img" src="storage/images/32.png"></div> --}}
 		</div>
 	</div>
 @endsection

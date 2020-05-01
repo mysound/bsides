@@ -788,6 +788,10 @@ footer {
 	box-sizing: border-box;
 }
 
+.input-error {
+	border: 2px solid #f5c6cb;
+}
+
 .form-flex {
 	display: flex;
 	flex-wrap: wrap;
@@ -805,6 +809,19 @@ footer {
 .form-item-100 {
 	width: 100%;
 	box-sizing: border-box;	
+}
+
+.form-alert {
+	padding: 10px;
+	color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.text-alert {
+	color: #721c24;
+	font-weight: bold;
+	font-size: 11px;
 }
 
 @media (max-width: 965px) {

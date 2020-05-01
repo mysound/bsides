@@ -42,8 +42,16 @@
 					</div>
 				</div>
 			@endforeach
+
+			@if (count($errors))
+				<div class="cart-item-form form-alert">
+					Ошибка заполнения формы
+				</div>
+			@endif
+
 			<div class="cart-item-form">
-				<form>
+				<form method="POST" action="{{ route('order.store') }}">
+					@csrf
 					<div class="form-title form-line">
 						Доставка: <span class="shipping-title">Почта России</span>
 					</div>
@@ -51,42 +59,66 @@
 					<div class="form-part form-line form-flex">
 						<div class="form-field form-flex-item">
 							<label class="form-field-label"> Фамилия: </label>
-							<input class="form-field-input" type="text" name="last_name">
+							<input class="form-field-input @error('last_name') input-error @enderror" type="text" name="last_name" value="{{ old('last_name') }}">
+							@error('last_name')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>
 						<div class="form-field form-flex-item">
 							<label class="form-field-label">Имя: </label>
-							<input class="form-field-input" type="text" name="first_name">
+							<input class="form-field-input @error('first_name') input-error @enderror" type="text" name="first_name" value="{{ old('first_name') }}">
+							@error('first_name')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>
 						<div class="form-field form-flex-item">
 							<label class="form-field-label">Отчество: </label>
-							<input class="form-field-input" type="text" name="middle_name">
+							<input class="form-field-input" type="text" name="middle_name" value="{{ old('middle_name') }}">
 						</div>
 						<div class="form-field form-flex-item form-item-50">
 							<label class="form-field-label">Телефон: </label>
-							<input class="form-field-input" type="text" name="middle_name">
+							<input class="form-field-input @error('phone') input-error @enderror" type="text" name="phone" value="{{ old('phone') }}">
+							@error('phone')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>
 						<div class="form-field form-flex-item">
 							<label class="form-field-label">E-mail: </label>
-							<input class="form-field-input" type="text" name="middle_name">
+							<input class="form-field-input @error('email') input-error @enderror" type="text" name="email" value="{{ old('email') }}">
+							@error('email')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>				
 					</div>
 					<div class="form-header-title">Адрес доставки: страна Россия</div>
 					<div class="form-part form-line form-flex">
 						<div class="form-field form-flex-item">
 							<label class="form-field-label"> Индекс: </label>
-							<input class="form-field-input" type="text" name="last_name">
+							<input class="form-field-input @error('zip_code') input-error @enderror" type="text" name="zip_code" value="{{ old('zip_code') }}">
+							@error('zip_code')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>
 						<div class="form-field form-flex-item">
 							<label class="form-field-label">Регион: </label>
-							<input class="form-field-input" type="text" name="first_name">
+							<input class="form-field-input @error('state') input-error @enderror" type="text" name="state" value="{{ old('state') }}">
+							@error('state')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>
 						<div class="form-field form-flex-item">
 							<label class="form-field-label">Город: </label>
-							<input class="form-field-input" type="text" name="middle_name">
+							<input class="form-field-input @error('city') input-error @enderror" type="text" name="city" value="{{ old('city') }}">
+							@error('city')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>
 						<div class="form-field form-item-100">
 							<label class="form-field-label">Адрес: </label>
-							<input class="form-field-input" type="text" name="middle_name">
+							<input class="form-field-input @error('address') input-error @enderror" type="text" name="address" value="{{ old('address') }}">
+							@error('address')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
 						</div>					
 					</div>
 					<div class="form-part">
