@@ -191,6 +191,7 @@ return [
         'available'             => 'Доступно',
         'size'                  => 'Размер',
         'zip_code'              => 'Индекс',
-        'state'                 => 'Регион'
+        'state'                 => 'Регион',
+        'g-recaptcha-response'  => 'reCAPTCHA'
     ],
 ];

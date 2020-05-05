@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewOrder extends Mailable
+class UserOrder extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +28,7 @@ class NewOrder extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.neworder')
-            ->subject('Новый Заказ B-Sides');
+        return $this->markdown('emails.userorder')
+            ->subject('Ваш заказ B-Sides');
     }
 }

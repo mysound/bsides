@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'B-Sides') }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    {!! NoCaptcha::renderJs() !!}
 </head>
 <body>
     <div id="grid-page">

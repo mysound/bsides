@@ -86,7 +86,7 @@
 							<label class="form-field-label">E-mail: </label>
 							<input class="form-field-input @error('email') input-error @enderror" type="text" name="email" value="{{ old('email') }}">
 							@error('email')
-								<span class="text-alert">{{ $message }}</span>
+								<div class="text-alert">{{ $message }}</div>
 							@enderror
 						</div>				
 					</div>
@@ -119,7 +119,13 @@
 							@error('address')
 								<span class="text-alert">{{ $message }}</span>
 							@enderror
-						</div>					
+						</div>
+					</div>
+					<div class="form-captcha">
+						{!! NoCaptcha::display() !!}
+						@error('g-recaptcha-response')
+							<div class="text-alert">{{ $message }}</div>
+						@enderror
 					</div>
 					<div class="form-part">
 						<div class="form-field form-flex-item">

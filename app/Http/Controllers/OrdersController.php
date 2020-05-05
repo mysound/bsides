@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Neworder;
+use App\Mail\NewOrder;
+use App\Mail\UserOrder;
+use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
-    	request()->validate([
+    	$this->validate(request(), [
     		'email' => 'required|email',
             'last_name' => 'required',
             'first_name' => 'required',
@@ -19,11 +21,14 @@ class OrdersController extends Controller
             'state' => 'required',
             'city' => 'required',
             'address' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
     	]);
 
     	Mail::to(request('email'))
-            ->send(new Neworder());
+            ->send(new NewOrder());
 
-    	return view('store.cart');
+        Cart::destroy();
+
+    	return redirect()->route('store')->with('message', 'Спасибо! Ваш заказ в обработке');
     }
 }
