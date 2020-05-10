@@ -42,6 +42,11 @@ class Product extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order');
+    }
+
     public function addImage($files)
     {
         $i = 0;

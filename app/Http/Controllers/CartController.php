@@ -30,7 +30,7 @@ class CartController extends Controller
             }
         }
 
-    	return redirect()->route('cart')->with('message', 'Това был добавлен в Корзину!');
+    	return redirect()->route('cart')->with('message', 'Това был добавлен в Корзину');
     }
 
     public function empty()

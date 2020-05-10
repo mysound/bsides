@@ -19,9 +19,10 @@ class CreateAddressesTable extends Migration
             $table->integer('country_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('address');
-            $table->integer('state_id');
+            //$table->integer('state_id');
+            $table->string('state');
             $table->string('city');
             $table->string('zip_code');
             $table->string('phone');

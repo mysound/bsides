@@ -869,7 +869,7 @@ footer {
 	}
 
 	.content-gmain {
-		grid-template-rows: repeat(3, 46px) repeat(1, 120px) repeat(5, 120px);
+		grid-template-rows: repeat(3, 46px) repeat(1, 168px) repeat(5, 120px);
 	}
 
 	.content-gmain div {
