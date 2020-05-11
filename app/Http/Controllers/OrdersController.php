@@ -18,7 +18,7 @@ class OrdersController extends Controller
     {
 
     	$this->validate(request(), [
-    		'email' => 'required|email|unique:users',
+    		'email' => 'required|email',
             'last_name' => 'required',
             'first_name' => 'required',
             'phone' => 'required',
@@ -29,16 +29,20 @@ class OrdersController extends Controller
             'g-recaptcha-response' => 'required|captcha'
     	]);
 
-        $random_pas = Str::random(8);
-        $user = new User;
-        $user->name = $request->first_name;
-        $user->email = $request->email;
-        $user->password = bcrypt($random_pas);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;            
-        $user->save();
+        $user = User::where('email', $request->email)->first();
 
-        $address = $user->addresses()->create([
+        if(empty($user)) {
+            $random_pas = Str::random(8);
+            $user = new User;
+            $user->name = $request->first_name;
+            $user->email = $request->email;
+            $user->password = bcrypt($random_pas);
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;            
+            $user->save();
+        }       
+
+        $address = $user->addresses()->firstOrCreate([
             'country_id' => 1,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -49,14 +53,13 @@ class OrdersController extends Controller
             'phone' => $request->phone
         ]);
 
-    	Mail::to(request('email'))
-            ->send(new NewOrder());
 
         $order = $this->newOrder($user->id, $address->id);
 
-        Cart::destroy();
+    	Mail::to(User::first())
+            ->send(new NewOrder($order));
 
-    	return redirect()->route('store')->with('message', 'Спасибо! Ваш заказ в обработке');
+    	return redirect()->route('store')->with('message', 'Спасибо! Ваш заказ в обработке, в ближайшее время с Вами свяжится наш менеджер');
     }
 
     public function newOrder($user_id, $address_id)
