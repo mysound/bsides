@@ -16,6 +16,7 @@ class CreateGanresTable extends Migration
         Schema::create('ganres', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('slug')->unique()->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function view(Product $product)
+    public function view(Product $product, $slug)
     {
         return view('store.view', compact('product'), [
             'items' => Product::all()->random(4)
@@ -42,6 +42,10 @@ class StoreController extends Controller
 
             if($products->first() == null) {
                 $products = Product::where('upc', $request->searchField);
+            }
+
+            if($products->first() == null) {
+                $products = Product::where('slug', $request->searchField);
             }
         }
 
@@ -90,5 +94,41 @@ class StoreController extends Controller
             return substr($item, 0, 1);
         });
         return view('store.all-artists', ['artists' => $artists]);
+    }
+
+    public function name($name, Request $request)
+    {
+        $catgories = Category::all();
+        $ganres = Ganre::all();
+
+        $rep_name = str_replace("-", " ", $name);
+        
+        $products = new Product;
+
+        $products = Product::where('slug', $name);
+        
+        $products = $products->paginate(15)->appends([
+            'searchField'   => $rep_name,
+            'categories'    => $catgories,
+            'ganres'        => $ganres,
+            'searchField'   => $rep_name,
+            'sortType'      => $request->sortType,
+            'min_price'     => $request->min_price,
+            'max_price'     => $request->max_price,
+            'category_id'   => $request->category_id,
+            'top_rs'        => $request->top_rs
+        ]);
+
+        return view('store.search',[
+            'products'      => $products,
+            'categories'    => $catgories,
+            'ganres'        => $ganres,
+            'searchField'   => $rep_name,
+            'sortType'      => $request->sortType,
+            'min_price'     => $request->min_price,
+            'max_price'     => $request->max_price,
+            'category_id'   => $request->category_id,
+            'top_rs'        => $request->top_rs
+        ]);
     }
 }

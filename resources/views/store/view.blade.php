@@ -2,7 +2,7 @@
 @section('content')
 	<div class="viewcontent">
 		<div class="view-title">
-			<h1>{{ $product->title }} от <a href="{{ route('store', ['searchField' => $product->name]) }}">{{ $product->name }}</a></h1>
+			<h1>{{ $product->title }} от <a href="{{ route('porductname', Str::slug($product->name)) }}">{{ $product->name }}</a></h1>
 		</div>
 		<div class="view-item">
 			<div class="view-item-image">
@@ -21,11 +21,16 @@
 			</div>
 			<div class="view-item-short">
 				<ul class="item-short-list">
-					<li><span>Лейбл:</span> {{ $product->brand->title ?? "" }}</li>
-					<li><span>Жанр:</span> {{ $product->ganre->title ?? "" }} </li>
-					<li><span>Страна:</span> Европа </li>
+					@if(isset($product->brand->title))
+						<li><span>Лейбл:</span> {{ $product->brand->title ?? "" }}</li>
+					@endif
+					@if(isset($product->ganre->title))
+						<li><span>Жанр:</span> {{ $product->ganre->title ?? "" }} </li>
+					@endif
 					<li><span>Состояние:</span> Новое </li>
 					<li><span>Описание:</span> {{ $product->short_description ?? "" }} </li>
+					<li><span>Количество дисков:</span> {{ $product->item_qty ?? "" }} </li>
+					<li><span>Страна:</span> Евросоюз </li>
 					<li><span>Год:</span> {{ $product->release_date ?? "" }}</li> 
 					<li><span>UPC:</span> {{ $product->upc ?? "" }}</li> 
 					<li class="instock"><span>В наличии</span></li>
@@ -61,7 +66,8 @@
 					<div class="content-store-item">
 						<div class="store-item">
 							<div class="store-item-img">
-								<a href="{{ route('view.product', $item->id) }}">
+								{{-- <a href="{{ route('view.product', $item->id) }}"> --}}
+								<a href="{{ $item->slugurl() }}">
 									@if($item->images->first())
 										<img src="{{ asset('storage/images/thumbnails/' . ($item->images->first()["title"])) }}">
 									@else

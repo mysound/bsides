@@ -15,12 +15,12 @@ class GanresTableSeeder extends Seeder
     {
         DB::table('ganres')->truncate();
 
-        Ganre::create(['title' => 'Blues']);
-        Ganre::create(['title' => 'Classical']);
-        Ganre::create(['title' => 'Jazz']);
-        Ganre::create(['title' => 'Rock']);
-        Ganre::create(['title' => 'Electronic']);
-        Ganre::create(['title' => 'Rap & Hip Hop']);
-        Ganre::create(['title' => 'Soul, R&B, Funk']);
+        Ganre::create(['title' => 'Blues', 'slug' => 'blues']);
+        Ganre::create(['title' => 'Classical', 'slug' => 'classical']);
+        Ganre::create(['title' => 'Jazz', 'slug' => 'jazz']);
+        Ganre::create(['title' => 'Rock', 'slug' => 'rock']);
+        Ganre::create(['title' => 'Electronic', 'slug' => 'electronic']);
+        Ganre::create(['title' => 'Rap & Hip Hop', 'slug' => 'rap-hip-hop']);
+        Ganre::create(['title' => 'Soul, R&B, Funk', 'slug' => 'soul-r-and-b-funk']);
     }
 }

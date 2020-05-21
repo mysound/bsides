@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('brand_id')->nullable();
             $table->string('ganre_id')->nullable();
-            $table->string('slug')->unique()->nullable();
+            $table->string('slug')->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->text('subtype_description')->nullable();

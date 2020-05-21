@@ -15,6 +15,6 @@ class CountriesTableSeeder extends Seeder
     {
         DB::table('countries')->truncate();
 
-        Country::create(['code' => 'RU', 'name' => 'Россия']);
+        Country::create(['code' => 'RU', 'name' => 'Россия', 'slug' => 'russian']);
     }
 }

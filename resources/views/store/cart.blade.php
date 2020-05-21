@@ -18,12 +18,12 @@
 				<div class="br-cart cart-item">
 					<div class="cart-item-img">
 						@forelse($product->model->images as $image)
-							<a href="{{ route('view.product', $product->id) }}">
+							<a href="{{ $product->model->slugurl() }}">
 								<img class="img" src="{{ asset('storage/images/thumbnails/' . $image->title) }}" width="60">
 							</a>
 							@break
 						@empty
-							<a href="{{ route('view.product', $product->id) }}">
+							<a href="{{ $product->model->slugurl() }}">
 								<img class="img" src="{{ asset('storage/images/thumbnails/noimage.png') }}" width="60">
 							</a>
 						@endforelse

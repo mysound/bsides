@@ -59,7 +59,8 @@
 					<div class="content-store-item">
 						<div class="store-item">
 							<div class="store-item-img">
-								<a href="{{ route('view.product', $product->id) }}">
+								{{-- <a href="{{ route('view.product', $product->id) }}"> --}}
+								<a href="{{ $product->slugurl() }}">
 									@if($product->images->first())
 										@foreach($product->images as $image)
 											<img src="{{ asset('storage/images/thumbnails/' . $image->title) }}">

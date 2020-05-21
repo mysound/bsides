@@ -18,7 +18,8 @@
 					<li class="li-key">{{ $key }} </li>
 						<ul class="artists-list">
 							@foreach($artist as $name)
-								<li><a href="{{ route('store', ['searchField' => $name]) }}">{{ $name }}</a></li>
+								{{-- <li><a href="{{ route('store', ['searchField' => $name]) }}">{{ $name }}</a></li> --}}
+								<li><a href="{{ route('porductname', Str::slug($name)) }}">{{ $name }}</a></li>
 							@endforeach
 						</ul>
 				@endforeach

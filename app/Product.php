@@ -22,6 +22,11 @@ class Product extends Model
         $this->attributes['title'] = Str::title($value);
     }
 
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug($this->name);
+    }
+
     public function category()
     {
     	return $this->belongsTo(Category::class);
@@ -75,5 +80,15 @@ class Product extends Model
             Storage::disk('thumbnails')->delete($image->title);
             $image->delete();
         }
+    }
+
+    public function slugurl()
+    {
+        return url("/store/view/{$this->id}-" . Str::slug($this->name) . "-" . Str::slug($this->title) . "-" . Str::slug($this->category->title));
+    }
+
+    public function slugname()
+    {
+        return url("collection/" . Str::slug($this->name));
     }
 }

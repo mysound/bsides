@@ -73,7 +73,8 @@ class ProductsImport implements ToModel, WithHeadingRow
                     'optional_description'  => $row['composer'],
                     'weight'                => $row['weight'],
                     'catalog_number'        => $row['catalognumber'],
-                    'repertuare_key'        => $row['repertuarekey']
+                    'repertuare_key'        => $row['repertuarekey'],
+                    'slug'                  => $row['artist']
                 ]
             );
 
