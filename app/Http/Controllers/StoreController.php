@@ -16,7 +16,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function view(Product $product, $slug)
+    public function view($category, $name, Product $product)
     {
         return view('store.view', compact('product'), [
             'items' => Product::all()->random(4)
@@ -100,34 +100,66 @@ class StoreController extends Controller
     {
         $catgories = Category::all();
         $ganres = Ganre::all();
-
-        $rep_name = str_replace("-", " ", $name);
         
         $products = new Product;
 
         $products = Product::where('slug', $name);
         
-        $products = $products->paginate(15)->appends([
-            'searchField'   => $rep_name,
+        $products = $products->paginate(15);
+
+        return view('store.search',[
+            'products'      => $products,
             'categories'    => $catgories,
             'ganres'        => $ganres,
-            'searchField'   => $rep_name,
+            'searchField'   => $name,
             'sortType'      => $request->sortType,
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
             'category_id'   => $request->category_id,
             'top_rs'        => $request->top_rs
         ]);
+    }
 
-        return view('store.search',[
-            'products'      => $products,
-            'categories'    => $catgories,
+    public function catslug($slug, $name = null, Request $request)
+    {
+        $categories = Category::all();
+        $ganres = Ganre::all();
+
+        $category = Category::where('slug', $slug)->first();
+
+        $products = new Product;
+
+        if($name) {
+            $products = Product::where('slug', 'LIKE' , '%' . $name . '%');
+        }
+
+        if ($category->parent_id == 0) {
+            $collection = $categories->where('parent_id', $category->id)->pluck('id');
+            $products = $products->whereIn('category_id', $collection);
+        } else {
+            $products = $products->where('category_id', $category->id);
+        }
+
+        $products = $products->paginate(15)->appends([
+            'categories'    => $categories,
             'ganres'        => $ganres,
-            'searchField'   => $rep_name,
+            'searchField'   => $name,
             'sortType'      => $request->sortType,
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
-            'category_id'   => $request->category_id,
+            'category_id'   => $category->id,
+            'top_rs'        => $request->top_rs
+        ]);
+
+        return view('store.search',[
+            'products'      => $products,
+            'categories'    => $categories,
+            'ganres'        => $ganres,
+            'searchField'   => $name,
+            'sortType'      => $request->sortType,
+            'min_price'     => $request->min_price,
+            'max_price'     => $request->max_price,
+            'category_id'   => $category->id,
             'top_rs'        => $request->top_rs
         ]);
     }

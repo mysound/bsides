@@ -32,10 +32,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 Auth::routes();
 
 Route::get('/', 'StoreController@index')->name('store.index');
-Route::get('/store/view/{product}-{slug}', 'StoreController@view')->name('view.product');
+//Route::get('/store/view/{product}-{slug}', 'StoreController@view')->name('view.product');
 Route::get('/store', 'StoreController@shope')->name('store');
 Route::get('/store/all-artists', 'StoreController@allartist')->name('all-artists');
 Route::get('/collection/{name}', 'StoreController@name')->name('porductname');
+
+Route::get('/store/{slug}/{name?}', 'StoreController@catslug')->name('category');
+Route::get('/store/{category}/{name}/{product}', 'StoreController@view')->name('view.product');
 
 Route::get('/store/cart', 'CartController@index')->name('cart');
 Route::post('/store/cart', 'CartController@store')->name('cart.store');

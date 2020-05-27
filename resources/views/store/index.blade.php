@@ -11,25 +11,25 @@
 		<div class="sidebar-row sidebar-row-top">ARTIST</div>
 		<div class="sidebar-line">
 			<ul>
-				<li><a href="#">Queen</a></li>
-				<li><a href="#">Michael Jackson</a></li>
-				<li><a href="#">Pink Floyd</a></li>
-				<li><a href="#">David Gilmour</a></li>
-				<li><a href="#">Nirvana</a></li>
-				<li><a href="#">Deep Purple</a></li>
-				<li><a href="#">Metallica</a></li>
-				<li><a href="#">The Beatles</a></li>
-				<li><a href="#">Led Zeppelin</a></li>
-				<li><a href="#">The Rolling Stones</a></li>
+				<li><a href="{{ route('porductname', 'queen') }}">Queen</a></li>
+				<li><a href="{{ route('porductname', 'jackson-michael') }}">Michael Jackson</a></li>
+				<li><a href="{{ route('porductname', 'pink-floyd') }}">Pink Floyd</a></li>
+				<li><a href="{{ route('porductname', 'gilmour-david') }}">David Gilmour</a></li>
+				<li><a href="{{ route('porductname', 'nirvana') }}">Nirvana</a></li>
+				<li><a href="{{ route('porductname', 'deep-purple') }}">Deep Purple</a></li>
+				<li><a href="{{ route('porductname', 'metallica') }}">Metallica</a></li>
+				<li><a href="{{ route('porductname', 'beatles') }}">The Beatles</a></li>
+				<li><a href="{{ route('porductname', 'led-zeppelin') }}">Led Zeppelin</a></li>
+				<li><a href="{{ route('porductname', 'rolling-stones') }}">The Rolling Stones</a></li>
 				<li><a href="{{ route('all-artists') }}">See more...</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="content">
 		<div class="content-gmain">
-			<div class="content-blk content-blk-first"><a href="{{ route('store', ['category_id' => [2]]) }}"><span>VINYL RECORDS</span></a></div>
+			<div class="content-blk content-blk-first"><a href="{{ route('category', 'vinyl') }}"><span>VINYL RECORDS</span></a></div>
 			<div class="content-blk content-blk-second"><a href="{{ route('store', ['category_id' => [3, 4]]) }}"><span>CD & SACD</span></a></div>
-			<div class="content-blk content-blk-third"><a href="{{ route('store', ['category_id' => [6, 7]]) }}"><span>DVD & Blu-Ray</span></a></div>
+			<div class="content-blk content-blk-third"><a href="{{ route('category', 'dvd-blu-ray') }}"><span>DVD & Blu-Ray</span></a></div>
 			<div class="content-blk-mm content4"><img class="content-img" src="storage/images/i1.jpg"></div>
 			{{-- <div class="content-blk-mm content5"><img class="content-img" src="storage/images/62.jpg"></div> --}}
 			<div class="content-blk-mm content6"><img class="content-img" src="storage/images/i2.jpg"></div>

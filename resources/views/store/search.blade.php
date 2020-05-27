@@ -23,16 +23,16 @@
 			<div class="sidebar-row">Artists</div>
 			<div class="sidebar-line">
 				<ul>
-					<li><a href="#">Queen</a></li>
-					<li><a href="#">Michael Jackson</a></li>
-					<li><a href="#">Pink Floyd</a></li>
-					<li><a href="#">David Gilmour</a></li>
-					<li><a href="#">Nirvana</a></li>
-					<li><a href="#">Deep Purple</a></li>
-					<li><a href="#">Metallica</a></li>
-					<li><a href="#">The Beatles</a></li>
-					<li><a href="#">Led Zeppelin</a></li>
-					<li><a href="#">The Rolling Stones</a></li>
+					<li><a href="{{ route('porductname', 'queen') }}">Queen</a></li>
+					<li><a href="{{ route('porductname', 'jackson-michael') }}">Michael Jackson</a></li>
+					<li><a href="{{ route('porductname', 'pink-floyd') }}">Pink Floyd</a></li>
+					<li><a href="{{ route('porductname', 'gilmour-david') }}">David Gilmour</a></li>
+					<li><a href="{{ route('porductname', 'nirvana') }}">Nirvana</a></li>
+					<li><a href="{{ route('porductname', 'deep-purple') }}">Deep Purple</a></li>
+					<li><a href="{{ route('porductname', 'metallica') }}">Metallica</a></li>
+					<li><a href="{{ route('porductname', 'beatles') }}">The Beatles</a></li>
+					<li><a href="{{ route('porductname', 'led-zeppelin') }}">Led Zeppelin</a></li>
+					<li><a href="{{ route('porductname', 'rolling-stones') }}">The Rolling Stones</a></li>
 					<li><a href="{{ route('all-artists') }}">See more...</a></li>
 				</ul>
 			</div>
@@ -42,9 +42,9 @@
 			<div class="content-pagination">
 				<div class="content-filter">Фильтр: 
 					@if($sortType == 'ASC')
-						<a href="{{ route('store', ['sortType' => 'DESC', 'searchField' => $searchField, 'category_id' => $category_id, 'top_rs' => $top_rs]) }}">По цене <span class="fullver">(дешевле - дороже)</span> &#9650;</a>
+						<a href="{{ route('store', ['sortType' => 'DESC', 'searchField' => $searchField, 'category_id' => [$category_id], 'top_rs' => $top_rs]) }}">По цене <span class="fullver">(дешевле - дороже)</span> &#9650;</a>
 					@elseif($sortType == 'DESC' or $sortType == '')
-						<a href="{{ route('store', ['sortType' => 'ASC', 'searchField' => $searchField, 'category_id' => $category_id, 'top_rs' => $top_rs]) }}">По цене <span class="fullver">@if(!$sortType == '')(дороже - дешевле)</span> &#9660;@endif</a>
+						<a href="{{ route('store', ['sortType' => 'ASC', 'searchField' => $searchField, 'category_id' => [$category_id], 'top_rs' => $top_rs]) }}">По цене <span class="fullver">@if(!$sortType == '')(дороже - дешевле)</span> &#9660;@endif</a>
 					@endif
 				</div>
 				{{ $products->links('store.partials.pagination') }}

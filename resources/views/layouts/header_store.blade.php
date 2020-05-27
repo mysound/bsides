@@ -41,7 +41,7 @@
 	</div>
 </header>
 <div class="menu">
-	<div class="menu-block allmusic"><a href="{{ route('store') }}">Вся музыка</a></div>
+	<div class="menu-block allmusic"><a href="{{ route('store') }}">Магазин</a></div>
 	<div class="menu-block menu-flyout"><a href="#">Популярные</a></div>
 	<div class="nav-flyout">
 		<div class="nav-flyout-content">
@@ -49,28 +49,28 @@
 				<div class="flayout-menu-column">
 					<h3>Artists:</h3>
 					<ul>							
-						<li><a href="#">The Doors</a></li>
-						<li><a href="#">David Gilmour</a></li>
-						<li><a href="#">Jimi Hendrix</a></li>
-						<li><a href="#">Roger Waters</a></li>
-						<li><a href="#">Stevie Ray Vaughan</a></li>
-						<li><a href="#">Nirvana</a></li>
-						<li><a href="#">Michael Jackson</a></li>
-						<li><a href="#">Creedence Clearwater Revival</a></li>
-						<li><a href="#">The Beatles</a></li>
-						<li><a href="#">Pink Floyd</a></li>
-						<li><a href="#">Deep Purple</a></li>
-						<li><a href="#">Led Zeppelin</a></li>
+						<li><a href="{{ route('porductname', 'doors-the') }}">The Doors</a></li>
+						<li><a href="{{ route('porductname', 'gilmour-david') }}">David Gilmour</a></li>
+						<li><a href="{{ route('porductname', 'hendrix-jimi') }}">Jimi Hendrix</a></li>
+						<li><a href="{{ route('porductname', 'waters-roger') }}">Roger Waters</a></li>
+						<li><a href="{{ route('porductname', 'vaughan-stevie-ray') }}">Stevie Ray Vaughan</a></li>
+						<li><a href="{{ route('porductname', 'nirvana') }}">Nirvana</a></li>
+						<li><a href="{{ route('porductname', 'jackson-michael') }}">Michael Jackson</a></li>
+						<li><a href="{{ route('porductname', 'creedence-clearwater-revival') }}">Creedence Clearwater Revival</a></li>
+						<li><a href="{{ route('porductname', 'beatles') }}">The Beatles</a></li>
+						<li><a href="{{ route('porductname', 'pink-floyd') }}">Pink Floyd</a></li>
+						<li><a href="{{ route('porductname', 'deep-purple') }}">Deep Purple</a></li>
+						<li><a href="{{ route('porductname', 'led-zeppelin') }}">Led Zeppelin</a></li>
 						<li><a href="{{ route('all-artists') }}">See more...</a></li>
 					</ul>
 				</div>
 				<div class="flayout-menu-column">
 					<h3>Formats:</h3>
 					<ul>							
-						<li><a href="{{ route('store', ['category_id' => [2]]) }}">Vinyl</a></li>
+						<li><a href="{{ route('category', 'vinyl') }}">Vinyl</a></li>
 						<li><a href="{{ route('store', ['category_id' => [3, 4]]) }}">CDs & SACD</a></li>
-						<li><a href="{{ route('store', ['category_id' => [6, 7]]) }}">DVD & Blu-Ray</a></li>
-						<li><a href="#">Box Sets</a></li>
+						<li><a href="{{ route('category', 'dvd-blu-ray') }}">DVD & Blu-Ray</a></li>
+						<li><a href="{{ route('category', 'box-sets') }}">Box Sets</a></li>
 					</ul>
 					<h3>Releases:</h3>
 					<ul>							
