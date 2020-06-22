@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('slug')->unique()->nullable();
+            $table->string('ru_title')->nullable();
             $table->integer('parent_id')->nullable();
             $table->tinyInteger('published')->nullable();
             $table->timestamps();

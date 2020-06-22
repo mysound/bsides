@@ -1,5 +1,7 @@
 @extends('layouts.app_store')
 
+@section('title', 'Корзина | bsides.ru')
+
 @section('content')
 
 <div class="cartcontent">

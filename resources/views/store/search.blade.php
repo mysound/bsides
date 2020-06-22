@@ -1,5 +1,9 @@
 @extends('layouts.app_store')
 
+@section('title', $metatitle ?? 'Результат поиска | bsides.ru')
+
+@section('description', $metadescription ?? 'Результат поиска')
+
 @section('content')
 
 	<div class="sidebar">

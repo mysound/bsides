@@ -8,7 +8,7 @@ use Str;
 class Category extends Model
 {
 
-	protected $fillable = ['title', 'slug', 'parent_id'];
+	protected $fillable = ['title', 'slug', 'parent_id', 'ru_title'];
 
 	public function setSlugAttribute($value)
     {

@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Ganre;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class StoreController extends Controller
 {
@@ -86,7 +87,7 @@ class StoreController extends Controller
     	]);
     }
 
-    public function allartist ()
+    public function allartist()
     {
         $products = Product::all();
         $collection = $products->pluck('name')->unique();
@@ -98,33 +99,22 @@ class StoreController extends Controller
 
     public function name($name, Request $request)
     {
-        $catgories = Category::all();
-        $ganres = Ganre::all();
-        
         $products = new Product;
 
         $products = Product::where('slug', $name);
         
         $products = $products->paginate(15);
+        
+        $viewArr = $this->viewArr($name);
+        $viewArr['products'] = $products;
+        $viewArr['metatitle'] = ($products->isEmpty() ? $name : $products->first()->name) . ' купить на виниловых пластинках Vinyl, на CD компакт-дисках, на DVD, на Blu-Ray | bsides.ru';
+        $viewArr['metadescription'] = 'Купить недорого все альбомы ' . ($products->isEmpty() ? $name : $products->first()->name) . ' на виниловых пластинках, компакт-дисках CD, DVD, Blu-Ray. Интернет-магазин bsides.ru';
 
-        return view('store.search',[
-            'products'      => $products,
-            'categories'    => $catgories,
-            'ganres'        => $ganres,
-            'searchField'   => $name,
-            'sortType'      => $request->sortType,
-            'min_price'     => $request->min_price,
-            'max_price'     => $request->max_price,
-            'category_id'   => $request->category_id,
-            'top_rs'        => $request->top_rs
-        ]);
+        return view('store.search', $viewArr);
     }
 
-    public function catslug($slug, $name = null, Request $request)
+    public function catslug($slug, $name = null)
     {
-        $categories = Category::all();
-        $ganres = Ganre::all();
-
         $category = Category::where('slug', $slug)->first();
 
         $products = new Product;
@@ -134,33 +124,100 @@ class StoreController extends Controller
         }
 
         if ($category->parent_id == 0) {
-            $collection = $categories->where('parent_id', $category->id)->pluck('id');
+            $collection = Category::where('parent_id', $category->id)->pluck('id');
             $products = $products->whereIn('category_id', $collection);
         } else {
             $products = $products->where('category_id', $category->id);
         }
 
-        $products = $products->paginate(15)->appends([
-            'categories'    => $categories,
-            'ganres'        => $ganres,
-            'searchField'   => $name,
-            'sortType'      => $request->sortType,
-            'min_price'     => $request->min_price,
-            'max_price'     => $request->max_price,
-            'category_id'   => $category->id,
-            'top_rs'        => $request->top_rs
-        ]);
+        $viewArr = $this->viewArr($name, $category->id);
 
-        return view('store.search',[
-            'products'      => $products,
-            'categories'    => $categories,
-            'ganres'        => $ganres,
-            'searchField'   => $name,
-            'sortType'      => $request->sortType,
-            'min_price'     => $request->min_price,
-            'max_price'     => $request->max_price,
-            'category_id'   => $category->id,
-            'top_rs'        => $request->top_rs
-        ]);
+        $products = $products->paginate(15)->appends($viewArr);
+
+        $viewArr['products'] = $products; 
+        $viewArr['metatitle'] = $category->title . ' купить в интернет магазине bsides.ru';
+
+        return view('store.search', $viewArr);
+    }
+
+    public function ganreslug($slug, $category = null)
+    {
+        $ganre = Ganre::where('slug', $slug)->first();
+
+        $products = Product::where('ganre_id', $ganre->id)->paginate(15);
+        $viewArr = $this->viewArr();
+        $viewArr['products'] = $products;
+        $viewArr['metatitle'] = $ganre->title . ' - ' . 'Виниловые пластинки и компакт-диски купить в интернет магазине bsides.ru';
+        $viewArr['metadescription'] = 'Купить виниловые пластинки Vinyl и компакт-диски CD, LP, EP, CD, DVD, Blu-Ray недорого в интернет магазине bsides жанра — '. $ganre->title .'. Доставка по России';
+        return view('store.search', $viewArr);
+    }
+
+    public function boxset()
+    {
+        $products = Product::where('item_qty', '>', '2')->paginate(15);
+        $viewArr = $this->viewArr();
+        $viewArr['products'] = $products;
+
+        return view('store.search', $viewArr);
+    }
+
+    public function preorder()
+    {
+        $products = Product::where('release_date', '>', $this->dateNow())->paginate(15);
+
+        $viewArr = $this->viewArr();
+        $viewArr['products'] = $products;
+
+        return view('store.search', $viewArr);
+    }
+
+    public function newReleas()
+    {
+        $products = Product::whereBetween('release_date', [date('Y-m-d', strtotime("-30 days")), $this->dateNow()])->paginate(15);
+
+        $viewArr = $this->viewArr();
+        $viewArr['products'] = $products;
+
+        return view('store.search', $viewArr);
+    }
+
+    public function viewArr($searchField = null, $category_id = null)
+    {
+        return [
+            'categories'    => Category::all(),
+            'ganres'        => Ganre::all(),
+            'searchField'   => $searchField,
+            'sortType'      => null,
+            'min_price'     => null,
+            'max_price'     => null,
+            'category_id'   => $category_id,
+            'top_rs'        => null,
+            'metatitle'     => 'Результат поиска | bsides.ru'
+        ];
+    }
+
+    public function dateNow()
+    {
+        return Carbon::now()->format('Y-m-d');
+    }
+
+    public function about()
+    {
+        return view('store.about');
+    }
+
+    public function payment()
+    {
+        return view('store.payment');
+    }
+
+    public function delivery()
+    {
+        return view('store.delivery');
+    }
+
+    public function policy()
+    {
+        return view('store.policy');
     }
 }

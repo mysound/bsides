@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'B-Sides') }}</title>
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     {!! NoCaptcha::renderJs() !!}
@@ -19,23 +20,21 @@
         <footer>
             <div class="footer-flex">
                 <div class="footer-flex-mm">
-                    <h3>Store</h3>
+                    <h3>Интернет-магазин</h3>
                     <ul>
-                        <li>Store</li>
-                        <li>Store1</li>
-                        <li>Store2</li>
+                        <li><a href="{{ route('about') }}">О нас</a></li>
                     </ul>
                 </div>
                 <div class="footer-flex-mm">
-                    <h3>FAQ</h3>
+                    <h3>Помощь покупателю</h3>
                     <ul>
-                        <li>FAQ</li>
-                        <li>FAQ1</li>
-                        <li>FAQ2</li>
+                        <li><a href="{{ route('policy') }}">Правила продажи</a></li>
+                        <li><a href="{{ route('payment') }}">Оплата</a></li>
+                        <li><a href="{{ route('delivery') }}">Доставка</a></li>
                     </ul>
                 </div>
                 <div class="footer-flex-mm">
-                    <h3>Social</h3>
+                    <h3>Отзывы</h3>
                     <ul>
                         <li>Social</li>
                     </ul>
@@ -43,7 +42,7 @@
             </div>
             <div class="footer-line"></div>
             <div class="footer-cpr">
-                <p>Copyright © 2015-2020</p>
+                <p>Copyright © 2015-{{ now()->year }} B-Sides. Все права защищены. Указанная стоимость товаров и условия их приобретения действительны по состоянию на текущую дату. </p><p>Сайт предназначен для лиц, достигших 18 лет.</p>
             </div>
         </footer>
     </div>

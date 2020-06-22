@@ -1,5 +1,9 @@
 @extends('layouts.app_store')
 
+@section('title', 'Все артисты по алфавиту | bsides.ru')
+
+@section('description', 'Все артисты по алфавиту')
+
 @section('content')
 
 	<div class="sidebar">

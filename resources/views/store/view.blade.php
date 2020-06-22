@@ -1,4 +1,9 @@
 @extends('layouts.app_store')
+
+@section('title', $product->name . ' - ' . $product->title . ' ' . $product->category->ru_title . ' купить ' . $product->category->title . ' | bsides.ru')
+
+@section('description', $product->title . ' - ' . $product->name . ' (' . $product->category->title . ' ' . $product->category->ru_title . '). Купить в интернет-магазине bsides. Доставка по России' )
+
 @section('content')
 	<div class="viewcontent">
 		<div class="view-title">

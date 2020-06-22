@@ -65,17 +65,17 @@
 					</ul>
 				</div>
 				<div class="flayout-menu-column">
-					<h3>Formats:</h3>
+					<h3>Форматы:</h3>
 					<ul>							
 						<li><a href="{{ route('category', 'vinyl') }}">Vinyl</a></li>
 						<li><a href="{{ route('store', ['category_id' => [3, 4]]) }}">CDs & SACD</a></li>
 						<li><a href="{{ route('category', 'dvd-blu-ray') }}">DVD & Blu-Ray</a></li>
-						<li><a href="{{ route('category', 'box-sets') }}">Box Sets</a></li>
+						<li><a href="{{ route('boxset') }}">Box Sets</a></li>
 					</ul>
-					<h3>Releases:</h3>
+					<h3>Релизы:</h3>
 					<ul>							
-						<li><a href="#">New Releases</a></li>
-						<li><a href="#">Pre-order</a></li>
+						<li><a href="{{ route('newproducts') }}">Новинки</a></li>
+						<li><a href="{{ route('preorder') }}">Предзаказ</a></li>
 					</ul>
 				</div>
 				<div class="flayout-menu-column">
@@ -118,5 +118,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="menu-block"><a href="#">Контакты</a></div>
+	<div class="menu-block menu-contacts"><a href="{{ route('about') }}">Контакты</a></div>
 </div>

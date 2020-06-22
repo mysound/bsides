@@ -32,18 +32,25 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 Auth::routes();
 
 Route::get('/', 'StoreController@index')->name('store.index');
-//Route::get('/store/view/{product}-{slug}', 'StoreController@view')->name('view.product');
 Route::get('/store', 'StoreController@shope')->name('store');
 Route::get('/store/all-artists', 'StoreController@allartist')->name('all-artists');
 Route::get('/collection/{name}', 'StoreController@name')->name('porductname');
-
 Route::get('/store/{slug}/{name?}', 'StoreController@catslug')->name('category');
 Route::get('/store/{category}/{name}/{product}', 'StoreController@view')->name('view.product');
+Route::get('/box-sets', 'StoreController@boxset')->name('boxset');
+Route::get('/pre-order', 'StoreController@preorder')->name('preorder');
+Route::get('/new-products', 'StoreController@newReleas')->name('newproducts');
+Route::get('/ganre/{slug}/{category?}', 'StoreController@ganreslug')->name('store.ganre');
 
-Route::get('/store/cart', 'CartController@index')->name('cart');
-Route::post('/store/cart', 'CartController@store')->name('cart.store');
-Route::get('/store/cart/empty', 'CartController@empty')->name('cart.empty');
-Route::delete('/store/cart/destroy/{product}', 'CartController@destroy')->name('cart.destroy');
+Route::get('/cart', 'CartController@index')->name('cart');
+Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::get('/cart/empty', 'CartController@empty')->name('cart.empty');
+Route::delete('/cart/destroy/{product}', 'CartController@destroy')->name('cart.destroy');
+
+Route::get('/about', 'StoreController@about')->name('about');
+Route::get('/payment', 'StoreController@payment')->name('payment');
+Route::get('/delivery', 'StoreController@delivery')->name('delivery');
+Route::get('/policy', 'StoreController@policy')->name('policy');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

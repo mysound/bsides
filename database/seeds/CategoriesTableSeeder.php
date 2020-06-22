@@ -15,12 +15,12 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->truncate();
 
-        Category::create(['title' => 'Music', 'parent_id' => '0', 'slug' => 'music']);
-        Category::create(['title' => 'Vinyl', 'parent_id' => '1', 'slug' => 'vinyl']);
-        Category::create(['title' => 'CD', 'parent_id' => '1', 'slug' => 'cd']);
-        Category::create(['title' => 'SACD', 'parent_id' => '1', 'slug' => 'sacd']);
-        Category::create(['title' => 'DVD & Blu-Ray', 'parent_id' => '0', 'slug' => 'dvd-blu-ray']);
-        Category::create(['title' => 'DVD', 'parent_id' => '5', 'slug' => 'dvd']);
-        Category::create(['title' => 'Blu Ray', 'parent_id' => '5', 'slug' => 'blu-ray']);
+        Category::create(['title' => 'Music', 'parent_id' => '0', 'slug' => 'music', 'ru_title' => 'Музыка']);
+        Category::create(['title' => 'Vinyl', 'parent_id' => '1', 'slug' => 'vinyl', 'ru_title' => 'Виниловая пластинка']);
+        Category::create(['title' => 'CD', 'parent_id' => '1', 'slug' => 'cd', 'ru_title' => 'Компакт-диск']);
+        Category::create(['title' => 'SACD', 'parent_id' => '1', 'slug' => 'sacd', 'ru_title' => 'Компакт диск Super Audio CD']);
+        Category::create(['title' => 'DVD & Blu-Ray', 'parent_id' => '0', 'slug' => 'dvd-blu-ray', 'ru_title' => '']);
+        Category::create(['title' => 'DVD', 'parent_id' => '5', 'slug' => 'dvd', 'ru_title' => '']);
+        Category::create(['title' => 'Blu Ray', 'parent_id' => '5', 'slug' => 'blu-ray', 'ru_title' => '']);
     }
 }

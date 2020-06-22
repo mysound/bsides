@@ -1,5 +1,9 @@
 @extends('layouts.app_store')
 
+@section('title', 'Виниловые пластинки и компакт диски купить в интернет-магазине B-Sides')
+
+@section('description', 'B-Sides - интернет-магазин виниловых пластинок и компакт дисков, а также музыкального оборудования для прослушивания музыки')
+
 @section('content')
 	<div class="sidebar">
 		@include('store.partials.ganres')
@@ -30,13 +34,15 @@
 			<div class="content-blk content-blk-first"><a href="{{ route('category', 'vinyl') }}"><span>VINYL RECORDS</span></a></div>
 			<div class="content-blk content-blk-second"><a href="{{ route('store', ['category_id' => [3, 4]]) }}"><span>CD & SACD</span></a></div>
 			<div class="content-blk content-blk-third"><a href="{{ route('category', 'dvd-blu-ray') }}"><span>DVD & Blu-Ray</span></a></div>
-			<div class="content-blk-mm content4"><img class="content-img" src="storage/images/i1.jpg"></div>
-			{{-- <div class="content-blk-mm content5"><img class="content-img" src="storage/images/62.jpg"></div> --}}
-			<div class="content-blk-mm content6"><img class="content-img" src="storage/images/i2.jpg"></div>
-			<div class="content-blk-mm content7"><img class="content-img" src="storage/images/i3.jpg"></div>
-			<div class="content-blk-mm content8"><img class="content-img" src="storage/images/box2.jpg"></div>
-			<div class="content-blk-mm content9"><img class="content-img" src="storage/images/t.jpg"></div>
-			<div class="content-blk-mm content10"><img class="content-img" src="storage/images/32.png"></div>
+			<div class="content-blk-mm content4"><a href="{{ route('category', 'vinyl') }}"><img class="content-img" src="storage/images/1.jpg"></a></div>
+			<div class="content-blk-mm content6"><a href="{{ route('newproducts') }}"><img class="content-img" src="storage/images/2.jpg"></a></div>
+			<div class="content-blk-mm content7"><a href="{{ route('preorder') }}"><img class="content-img" src="storage/images/3.jpg"></a></div>
+			<div class="content-blk-mm content8"><a href="{{ route('boxset') }}"><img class="content-img" src="storage/images/4.jpg"></a></div>
+			<div class="content-blk-mm content9"><img class="content-img" src="storage/images/5.jpg"></div>
+			<div class="content-blk-mm content10"><img class="content-img" src="storage/images/6.jpg"></div>
 		</div>
+	<div class="indexh1">
+		<h1>B-Sides Интернет-Магазин виниловых пластинок из США и Европы</h1>
+	</div>
 	</div>
 @endsection
