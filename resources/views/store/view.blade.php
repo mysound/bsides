@@ -61,7 +61,7 @@
 				</ul>
 			</div>
 			<div class="description-content">
-				<p>{{ $product->description ?? $product->name . ' - ' . $product->title }}</p>
+				<p>{{ $product->description ?? $product->name . ' - ' . $product->title . ' (' . $product->category->title . ')'}}</p>
 			</div>
 		</div>
 		<div class="view-also">

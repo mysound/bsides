@@ -79,24 +79,27 @@
 					</ul>
 				</div>
 				<div class="flayout-menu-column">
-					<a href="#" class="flayout-imglink">
+					<a href="{{ route('porductname', 'metallica') }}" class="flayout-imglink">
+					<img src="/storage/images/metallica.jpg">
 						<h3>Metallica</h3>
 					</a>
 				</div>
 				<div class="flayout-menu-column">
-					<a href="#" class="flayout-imglink">
+					<a href="{{ route('porductname', 'gilmour-david') }}" class="flayout-imglink">
+					<img src="/storage/images/gilmour.jpg">
 						<h3>David Gilmour</h3>
 					</a>
 				</div>
 				<div class="flayout-menu-column">
-					<a href="#" class="flayout-imglink">
+					<a href="{{ route('porductname', 'kravitz-lenny') }}" class="flayout-imglink">
+						<img src="/storage/images/kravitz.jpg">
 						<h3>Lenny Kravitz</h3>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="menu-block menu-flyout"><a href="#">Оборудование</a></div>
+	{{-- <div class="menu-block menu-flyout"><a href="#">Оборудование</a></div>
 	<div class="nav-flyout">
 		<div class="nav-flyout-content">
 			<div class="flayout-menu">						
@@ -117,6 +120,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<div class="menu-block menu-contacts"><a href="{{ route('about') }}">Контакты</a></div>
 </div>

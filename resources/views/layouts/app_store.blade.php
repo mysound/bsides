@@ -34,10 +34,7 @@
                     </ul>
                 </div>
                 <div class="footer-flex-mm">
-                    <h3>Отзывы</h3>
-                    <ul>
-                        <li>Social</li>
-                    </ul>
+                    <h3>8(86137)20966</h3>                
                 </div>  
             </div>
             <div class="footer-line"></div>

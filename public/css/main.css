@@ -850,7 +850,7 @@ footer, footer a {
 }
 
 
-@media (max-width: 965px) {
+@media (max-width: 750px) {
 
 	h1 {
 		font-size: 18px;
@@ -898,9 +898,9 @@ footer, footer a {
 		padding: 12px 0;
 	}
 
-	.allmusic {
+	/*.allmusic {
 		display: none;
-	}
+	}*/
 
 	.menu-contacts {
 		display: none;
