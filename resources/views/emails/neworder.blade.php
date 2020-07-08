@@ -19,7 +19,7 @@ E-Mail: {{ $order->user->email }}
 | Title        | Qty    | Price    |
 |:-------------|:------:| --------:|
 @foreach($order->products as $product)
-| {{ $product->name }} - {{ $product->title }} ({{ $product->category->title }}) <br> {{ $product->sku }} | {{ $product->pivot->quantity }} | ${{ $product->price }} |
+| {{ $product->name }} - {{ $product->title }} ({{ $product->category->title }}) <br> {{ $product->sku }} | {{ $product->pivot->quantity }} | {{ $product->price }} руб.|
 @endforeach
 @endcomponent
 

@@ -56,7 +56,11 @@ class OrdersController extends Controller
 
         $order = $this->newOrder($user->id, $address->id);
 
-    	Mail::to(User::first())
+        $mailstore = env('MAIL_STORE');
+        $mailcopy = env('MAIL_STORE_COPY');
+
+    	Mail::to($mailstore)
+            ->cc($mailcopy)
             ->send(new NewOrder($order));
 
     	return redirect()->route('store')->with('message', 'Спасибо! Ваш заказ в обработке, в ближайшее время с Вами свяжится наш менеджер');
