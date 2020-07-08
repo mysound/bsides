@@ -57,6 +57,7 @@ class OrdersController extends Controller
         $order = $this->newOrder($user->id, $address->id);
 
         $mailstore = env('MAIL_STORE');
+        
         $mailcopy = env('MAIL_STORE_COPY');
 
     	Mail::to($mailstore)
