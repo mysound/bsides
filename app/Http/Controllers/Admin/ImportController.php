@@ -45,7 +45,7 @@ class ImportController extends Controller
     {
         $startstr = $request->startstr;
         $endstr = $request->endstr;
-        $products = \App\Product::doesntHave('images')->take(5)->get();
+        $products = \App\Product::doesntHave('images')->take(10)->get();
         ImageImport::dispatch($products, $startstr, $endstr);
 
         return redirect()->route('admin.product.index')->with('status', 'The queue successfully');
