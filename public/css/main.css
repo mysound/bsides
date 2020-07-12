@@ -567,6 +567,10 @@ footer {
 	text-align: center;
 }
 
+.view-item-edit {
+	color: blue;
+}
+
 .item-price {
 	background: #fef7da;
 	padding: 20px;

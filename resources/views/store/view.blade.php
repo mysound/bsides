@@ -33,12 +33,16 @@
 						<li><span>Жанр:</span> {{ $product->ganre->title ?? "" }} </li>
 					@endif
 					<li><span>Состояние:</span> Новое </li>
+					<li><span>Формат:</span> {{ $product->category->title }} </li>
 					<li><span>Описание:</span> {{ $product->short_description ?? "" }} </li>
 					<li><span>Количество дисков:</span> {{ $product->item_qty ?? "" }} </li>
 					<li><span>Страна:</span> Евросоюз </li>
 					<li><span>Год:</span> {{ $product->release_date ?? "" }}</li> 
 					<li><span>UPC:</span> {{ $product->upc ?? "" }}</li> 
 					<li class="instock"><span>В наличии</span></li>
+					@if(Auth::user() && Auth::user()->admin)
+						<li><a href="{{ route('admin.product.edit', $product->id) }}"><span class="view-item-edit">&#9998; Revise this item</span></a></li>
+					@endif
 				</ul>
 			</div>
 			<div class="view-item-price">
