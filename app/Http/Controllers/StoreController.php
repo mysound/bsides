@@ -93,6 +93,9 @@ class StoreController extends Controller
         $collection = $products->pluck('name')->unique();
         $artists = $collection->groupBy(function ($item, $key) {
             return substr($item, 0, 1);
+        })
+        ->sortBy(function ($item, $key) {
+            return $key;
         });
         return view('store.all-artists', ['artists' => $artists]);
     }
