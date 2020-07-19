@@ -36,7 +36,7 @@ Route::get('/store', 'StoreController@shope')->name('store');
 Route::get('/store/all-artists', 'StoreController@allartist')->name('all-artists');
 Route::get('/collection/{name}', 'StoreController@name')->name('porductname');
 Route::get('/store/{slug}/{name?}', 'StoreController@catslug')->name('category');
-Route::get('/store/{category}/{name}/{product}', 'StoreController@view')->name('view.product');
+Route::get('/{category}/{name}/{product}{title}', 'StoreController@view')->name('view.product');
 Route::get('/box-sets', 'StoreController@boxset')->name('boxset');
 Route::get('/pre-order', 'StoreController@preorder')->name('preorder');
 Route::get('/new-products', 'StoreController@newReleas')->name('newproducts');

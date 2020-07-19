@@ -84,7 +84,7 @@ class Product extends Model
 
     public function slugurl()
     {
-        return url("/store/{$this->category->slug}/{$this->slug}/{$this->id}-" . Str::slug($this->title));
+        return url("/{$this->category->slug}/{$this->slug}/{$this->id}-" . Str::slug($this->title));
     }
 
     public function slugname()
