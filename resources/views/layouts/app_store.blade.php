@@ -9,6 +9,7 @@
 
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
+    @yield('yandex-verification')
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     {!! NoCaptcha::renderJs() !!}

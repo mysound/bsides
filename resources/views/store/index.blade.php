@@ -4,6 +4,10 @@
 
 @section('description', 'B-Sides - интернет-магазин виниловых пластинок и компакт дисков, а также музыкального оборудования для прослушивания музыки')
 
+@section('yandex-verification')
+<meta name="yandex-verification" content="50f243409f9a49ea" />
+@endsection
+
 @section('content')
 	<div class="sidebar">
 		@include('store.partials.ganres')
