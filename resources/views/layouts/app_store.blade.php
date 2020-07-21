@@ -50,7 +50,7 @@
                     </ul>
                 </div>
                 <div class="footer-flex-mm">
-                    <h3>8(86137)20966</h3>                
+                    <h3>8(938)5290585</h3>                
                 </div>  
             </div>
             <div class="footer-line"></div>
