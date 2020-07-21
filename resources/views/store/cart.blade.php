@@ -123,6 +123,16 @@
 							@enderror
 						</div>
 					</div>
+					<div class="form-header-title">Комментарий: </div>
+					<div class="form-part form-line">
+						<div class="form-field form-item-100">
+							<textarea class="form-textarea @error('comment') input-error @enderror" rows="3" name="comment" maxlength
+="255">{{ old('comment') }}</textarea>
+							@error('comment')
+								<span class="text-alert">{{ $message }}</span>
+							@enderror
+						</div>
+					</div>
 					<div class="form-captcha">
 						{!! NoCaptcha::display() !!}
 						@error('g-recaptcha-response')

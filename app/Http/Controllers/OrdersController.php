@@ -16,7 +16,6 @@ class OrdersController extends Controller
 {
     public function store(Request $request)
     {
-
     	$this->validate(request(), [
     		'email' => 'required|email',
             'last_name' => 'required',
@@ -26,7 +25,8 @@ class OrdersController extends Controller
             'state' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'g-recaptcha-response' => 'required|captcha'
+            'g-recaptcha-response' => 'required|captcha',
+            'comment' => 'max:255'
     	]);
 
         $user = User::where('email', $request->email)->first();
@@ -53,8 +53,9 @@ class OrdersController extends Controller
             'phone' => $request->phone
         ]);
 
+        $comment = $request->comment;
 
-        $order = $this->newOrder($user->id, $address->id);
+        $order = $this->newOrder($user->id, $address->id, $comment);
 
         $mailstore = env('MAIL_STORE');
         $mailcopy = env('MAIL_STORE_COPY');
@@ -66,13 +67,12 @@ class OrdersController extends Controller
     	return redirect()->route('store')->with('message', 'Спасибо! Ваш заказ в обработке, в ближайшее время с Вами свяжится наш менеджер');
     }
 
-    public function newOrder($user_id, $address_id)
+    public function newOrder($user_id, $address_id, $comment = null)
     {
-
         $order = new Order;
         $order->user_id = $user_id;
         $order->address_id = $address_id;
-        $order->comment = '';
+        $order->comment = $comment;
         $order->shipping_address = '';
         $order->total = Cart::subtotal('2', '.', '');
         $order->subtotal = Cart::subtotal('2', '.', '');

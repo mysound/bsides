@@ -797,6 +797,15 @@ footer {
 	box-sizing: border-box;
 }
 
+.form-textarea {
+	width: 100%;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	padding: 0 10px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
 .input-error {
 	border: 2px solid #f5c6cb;
 }

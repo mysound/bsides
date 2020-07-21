@@ -192,6 +192,7 @@ return [
         'size'                  => 'Размер',
         'zip_code'              => 'Индекс',
         'state'                 => 'Регион',
-        'g-recaptcha-response'  => 'reCAPTCHA'
+        'g-recaptcha-response'  => 'reCAPTCHA',
+        'comment'               => 'Комментарий'
     ],
 ];
