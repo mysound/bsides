@@ -12,7 +12,8 @@ E-Mail: {{ $order->user->email }}
 <span style="font-size: 14px; font-weight: bold;">Адрес:</span> {{ $order->address->address }}, <br>
 <span style="font-size: 14px; font-weight: bold;">Индекс:</span> {{ $order->address->zip_code }}, <br>
 <span style="font-size: 14px; font-weight: bold;">Телефон:</span> {{ $order->address->phone }}, <br>
-<span style="font-size: 14px; font-weight: bold;">Сумма заказа:</span> {{ $order->total }} руб.
+<span style="font-size: 14px; font-weight: bold;">Сумма заказа:</span> {{ $order->total }} руб. <br><br>
+<span style="font-size: 14px; font-weight: bold; font-style: italic">Комментарий:</span> {{ $order->comment }}
 @endcomponent
 
 @component('mail::table')
