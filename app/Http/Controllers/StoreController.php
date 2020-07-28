@@ -83,7 +83,8 @@ class StoreController extends Controller
             'min_price'     => $request->min_price,
             'max_price'     => $request->max_price,
             'category_id'   => $request->category_id,
-            'top_rs'        => $request->top_rs
+            'top_rs'        => $request->top_rs,
+            'categoryslug'  => null
     	]);
     }
 
@@ -133,7 +134,7 @@ class StoreController extends Controller
             $products = $products->where('category_id', $category->id);
         }
 
-        $viewArr = $this->viewArr($name, $category->id);
+        $viewArr = $this->viewArr($name, $category->id, $category->slug);
 
         $products = $products->paginate(15)->appends($viewArr);
 
@@ -149,6 +150,7 @@ class StoreController extends Controller
 
         $products = Product::where('ganre_id', $ganre->id)->paginate(15);
         $viewArr = $this->viewArr();
+        $viewArr['ganreslug'] = $ganre->slug;
         $viewArr['products'] = $products;
         $viewArr['metatitle'] = $ganre->title . ' - ' . 'Виниловые пластинки и компакт-диски купить в интернет магазине bsides.ru';
         $viewArr['metadescription'] = 'Купить виниловые пластинки Vinyl и компакт-диски CD, LP, EP, CD, DVD, Blu-Ray недорого в интернет магазине bsides жанра — '. $ganre->title .'. Доставка по России';
@@ -184,7 +186,7 @@ class StoreController extends Controller
         return view('store.search', $viewArr);
     }
 
-    public function viewArr($searchField = null, $category_id = null)
+    public function viewArr($searchField = null, $category_id = null, $categoryslug = null)
     {
         return [
             'categories'    => Category::all(),
@@ -194,6 +196,7 @@ class StoreController extends Controller
             'min_price'     => null,
             'max_price'     => null,
             'category_id'   => $category_id,
+            'categoryslug'  => $categoryslug,
             'top_rs'        => null,
             'metatitle'     => 'Результат поиска | bsides.ru'
         ];

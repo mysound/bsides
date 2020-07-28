@@ -43,6 +43,11 @@
 			@include('store.partials.ganres')
 		</div>
 		<div class="content">
+			@if(Route::currentRouteName() == 'store.ganre')
+				{{ Breadcrumbs::render('store.ganre', $ganreslug) }}
+			@else
+				{{ Breadcrumbs::render(Route::currentRouteName(), $categoryslug, $searchField) }}
+			@endif
 			<div class="content-pagination">
 				<div class="content-filter">Фильтр: 
 					@if($sortType == 'ASC')

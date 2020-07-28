@@ -11,6 +11,7 @@
         "php": "^7.2",
         "anhskohbo/no-captcha": "^3.2",
         "bumbummen99/shoppingcart": "^2.9",
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
