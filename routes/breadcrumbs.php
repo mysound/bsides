@@ -11,13 +11,13 @@ Breadcrumbs::for('store.searchfield', function ($trail, $searchfield) {
     $trail->push(ucwords(str_replace('-', ' ', $searchfield)), route('store', $searchfield));
 });
 
-// Collection
+// Store > Collection
 Breadcrumbs::for('porductname', function ($trail, $category = null, $porductname) {
 	$trail->parent('store');
 	$trail->push(ucwords(str_replace('-', ' ', $porductname)), route('porductname', $porductname));
 });
 
-// Ganre
+// Store > Ganre
 Breadcrumbs::for('store.ganre', function ($trail, $ganreslug) {
 	$trail->parent('store');
     $trail->push('жанр: '.ucwords(str_replace('-', ' ', $ganreslug)), route('store.ganre', $ganreslug));
@@ -33,4 +33,22 @@ Breadcrumbs::for('category', function ($trail, $slug, $searchField) {
     	$trail->parent('category', $slug, null);
     	$trail->push(ucwords(str_replace('-', ' ', $searchField)), route('category', $slug));
     }
+});
+
+// Store > Newproducts
+Breadcrumbs::for('newproducts', function ($trail) {
+    $trail->parent('store');
+    $trail->push('Новинки', route('store'));
+});
+
+// Store > Preorder
+Breadcrumbs::for('preorder', function ($trail) {
+    $trail->parent('store');
+    $trail->push('Предзаказ', route('store'));
+});
+
+// Store > Boxset
+Breadcrumbs::for('boxset', function ($trail) {
+    $trail->parent('store');
+    $trail->push('Бокс-сеты', route('store'));
 });
