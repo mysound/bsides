@@ -43,8 +43,10 @@
 			@include('store.partials.ganres')
 		</div>
 		<div class="content">
-			@if(Route::currentRouteName() == 'store.ganre')
+			@if (Route::currentRouteName() == 'store.ganre')
 				{{ Breadcrumbs::render('store.ganre', $ganreslug) }}
+			@elseif ((Route::currentRouteName() == 'store') && ($searchField != null))
+				{{ Breadcrumbs::render('store.searchfield', $searchField) }}
 			@else
 				{{ Breadcrumbs::render(Route::currentRouteName(), $categoryslug, $searchField) }}
 			@endif

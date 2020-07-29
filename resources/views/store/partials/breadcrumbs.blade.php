@@ -1,6 +1,6 @@
 @if (count($breadcrumbs))
 	<div>
-	    <ul class="breadcrumb">
+	    <ul class="breadcrumb">Результат поиска: 
 	        @foreach ($breadcrumbs as $breadcrumb)
 
 	            @if ($breadcrumb->url && !$loop->last)

@@ -1,8 +1,14 @@
 <?php
 
 // Store
-Breadcrumbs::for('store', function ($trail) {
-	$trail->push('Поиск', route('store'));
+Breadcrumbs::for('store', function ($trail) {    
+	$trail->push('Магазин', route('store'));
+});
+
+// Store > SearchField
+Breadcrumbs::for('store.searchfield', function ($trail, $searchfield) {    
+    $trail->parent('store');
+    $trail->push(ucwords(str_replace('-', ' ', $searchfield)), route('store', $searchfield));
 });
 
 // Collection
