@@ -64,6 +64,8 @@ class StoreController extends Controller
             $products = $products->whereBetween('price', [$min_price, $max_price]);
         }
 
+        $products = $products->where('quantity', '>', 0);
+
         $products = $products->paginate(15)->appends([
             'searchField'   => $request->searchField,
             'sortType'      => $request->sortType,
@@ -106,6 +108,8 @@ class StoreController extends Controller
         $products = new Product;
 
         $products = Product::where('slug', $name);
+
+        $products = $products->where('quantity', '>', 0);
         
         $products = $products->paginate(15);
         
@@ -136,6 +140,7 @@ class StoreController extends Controller
 
         $viewArr = $this->viewArr($name, $category->id, $category->slug);
 
+        $products = $products->where('quantity', '>', 0);
         $products = $products->paginate(15)->appends($viewArr);
 
         $viewArr['products'] = $products; 
@@ -148,6 +153,7 @@ class StoreController extends Controller
     {
         $ganre = Ganre::where('slug', $slug)->first();
 
+        $products = $products->where('quantity', '>', 0);
         $products = Product::where('ganre_id', $ganre->id)->paginate(15);
         $viewArr = $this->viewArr();
         $viewArr['ganreslug'] = $ganre->slug;

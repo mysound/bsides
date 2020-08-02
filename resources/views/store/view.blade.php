@@ -63,11 +63,15 @@
 				<div class="item-price">
 					<div class="item-price-title">{{ round($product->price) }} руб.</div>
 					<div class="item-price-form">
-						<form method="POST" action="{{ route('cart.store') }}">
-							@csrf
-							<input type="hidden" name="product_id" value="{{ $product->id }}">
-							<input class="item-price-btn" type="submit" name="" value="Купить">
-						</form>
+						@if($product->quantity > 0)
+							<form method="POST" action="{{ route('cart.store') }}">
+								@csrf
+								<input type="hidden" name="product_id" value="{{ $product->id }}">
+								<input class="item-price-btn" type="submit" name="" value="Купить">
+							</form>
+						@else
+							<p>Уточнить о поступлении</p>
+						@endif
 					</div>
 				</div>
 			</div>
