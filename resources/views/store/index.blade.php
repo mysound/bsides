@@ -16,7 +16,7 @@
 				<li><a href="{{ route('store', ['top_rs' => true]) }}">Rolling Stone Top 500</a></li>
 			</ul>
 		</div>
-		<div class="sidebar-row sidebar-row-top">ARTIST</div>
+		<div class="sidebar-row sidebar-row-top">Исполнители</div>
 		<div class="sidebar-line">
 			<ul>
 				<li><a href="{{ route('porductname', 'queen') }}">Queen</a></li>
@@ -29,7 +29,7 @@
 				<li><a href="{{ route('porductname', 'beatles') }}">The Beatles</a></li>
 				<li><a href="{{ route('porductname', 'led-zeppelin') }}">Led Zeppelin</a></li>
 				<li><a href="{{ route('porductname', 'rolling-stones') }}">The Rolling Stones</a></li>
-				<li><a href="{{ route('all-artists') }}">See more...</a></li>
+				<li><a href="{{ route('all-artists') }}">Еще...</a></li>
 			</ul>
 		</div>
 	</div>

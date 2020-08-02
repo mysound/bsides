@@ -36,10 +36,24 @@
 					<li><span>Формат:</span> {{ $product->category->title }} </li>
 					<li><span>Описание:</span> {{ $product->short_description ?? "" }} </li>
 					<li><span>Количество дисков:</span> {{ $product->item_qty ?? "" }} </li>
-					<li><span>Страна:</span> Евросоюз </li>
-					<li><span>Год:</span> {{ $product->release_date ?? "" }}</li> 
-					<li><span>UPC:</span> {{ $product->upc ?? "" }}</li> 
-					<li class="instock"><span>В наличии</span></li>
+					<li><span>Страна:</span>
+						@if($product->price < 450)
+							-
+						@else
+							Евросоюз
+						@endif
+					</li>
+					<li><span>Год:</span>
+						@if($product->release_date)
+							{{ Carbon\Carbon::createFromFormat('Y-m-d', $product->release_date)->year }}
+						@endif
+					</li> 
+					<li><span>UPC:</span> {{ $product->upc ?? "" }}</li>
+					@if($product->quantity > 0)
+						<li class="instock"><span>В наличии</span></li>
+					@else
+						<li class="outofstok"><span>Нет в наличии</span></li>
+					@endif
 					@if(Auth::user() && Auth::user()->admin)
 						<li><a href="{{ route('admin.product.edit', $product->id) }}"><span class="view-item-edit">&#9998; Revise this item</span></a></li>
 					@endif
@@ -61,7 +75,7 @@
 		<div class="view-description">
 			<div class="description-menu">
 				<ul class="description-tabs">
-					<li><span>Description</span></li>
+					<li><span>Описание</span></li>
 				</ul>
 			</div>
 			<div class="description-content">
@@ -78,7 +92,6 @@
 					<div class="content-store-item">
 						<div class="store-item">
 							<div class="store-item-img">
-								{{-- <a href="{{ route('view.product', $item->id) }}"> --}}
 								<a href="{{ $item->slugurl() }}">
 									@if($item->images->first())
 										<img src="{{ asset('storage/images/thumbnails/' . ($item->images->first()["title"])) }}">

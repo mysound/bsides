@@ -24,7 +24,7 @@
 					</div>
 		        </form>
 			</div>
-			<div class="sidebar-row">Artists</div>
+			<div class="sidebar-row">Исполнители</div>
 			<div class="sidebar-line">
 				<ul>
 					<li><a href="{{ route('porductname', 'queen') }}">Queen</a></li>
@@ -37,7 +37,7 @@
 					<li><a href="{{ route('porductname', 'beatles') }}">The Beatles</a></li>
 					<li><a href="{{ route('porductname', 'led-zeppelin') }}">Led Zeppelin</a></li>
 					<li><a href="{{ route('porductname', 'rolling-stones') }}">The Rolling Stones</a></li>
-					<li><a href="{{ route('all-artists') }}">See more...</a></li>
+					<li><a href="{{ route('all-artists') }}">Еще...</a></li>
 				</ul>
 			</div>
 			@include('store.partials.ganres')

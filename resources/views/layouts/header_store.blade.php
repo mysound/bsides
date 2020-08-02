@@ -61,7 +61,7 @@
 						<li><a href="{{ route('porductname', 'pink-floyd') }}">Pink Floyd</a></li>
 						<li><a href="{{ route('porductname', 'deep-purple') }}">Deep Purple</a></li>
 						<li><a href="{{ route('porductname', 'led-zeppelin') }}">Led Zeppelin</a></li>
-						<li><a href="{{ route('all-artists') }}">See more...</a></li>
+						<li><a href="{{ route('all-artists') }}">Еще...</a></li>
 					</ul>
 				</div>
 				<div class="flayout-menu-column">
