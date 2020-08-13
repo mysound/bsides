@@ -50,4 +50,14 @@ class ImportController extends Controller
 
         return redirect()->route('admin.product.index')->with('status', 'The queue successfully');
     }
+
+    public function preorder(Request $request)
+    {
+        return view('admin.import.preorder');
+    }
+
+    public function preorderstore()
+    {
+        return "OK";
+    }
 }

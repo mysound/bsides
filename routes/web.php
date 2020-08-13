@@ -25,6 +25,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('/import', 'ImportController@index')->name('admin.import');
 	Route::get('/import/create', 'ImportController@create')->name('admin.import.create');
 	Route::post('/import', 'ImportController@store')->name('admin.import.store');
+	Route::get('/import/preorder', 'ImportController@preorder')->name('admin.import.preorder');
+	Route::post('/import/preorderstore', 'ImportController@preorderstore')->name('admin.import.preorderstore');
 	Route::get('/import/image', 'ImportController@imgcreate')->name('admin.import.imgcreate');
 	Route::get('/import/imgstore', 'ImportController@imgstore')->name('admin.import.imgstore');
 });
