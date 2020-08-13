@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\ProductsImport;
+use App\Imports\PreorderImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Jobs\ImageImport;
 
@@ -56,8 +57,17 @@ class ImportController extends Controller
         return view('admin.import.preorder');
     }
 
-    public function preorderstore()
+    public function preorderstore(Request $request)
     {
-        return "OK";
+        $this->validate(request(), [
+            'import_file'  =>  'file|required'
+        ]);
+
+        $skutitle = $request->sku_title;
+        $currency_eur = $request->currency_eur;
+
+        Excel::import(new PreorderImport($skutitle, $currency_eur), $request->file('import_file'));
+
+        return redirect()->route('admin.product.index')->with('status', 'The file was successfully imported');
     }
 }
