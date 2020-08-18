@@ -90,7 +90,11 @@
 								<form method="POST" action="{{ route('cart.store') }}">
 									@csrf
 									<input type="hidden" name="product_id" value="{{ $product->id }}">
-									<button>Купить</button>
+									@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
+										<button>Заказать</button>
+									@else
+										<button>Купить</button>
+									@endif
 								</form>
 							</div>
 						</div>

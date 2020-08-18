@@ -43,14 +43,26 @@
 							Евросоюз
 						@endif
 					</li>
-					<li><span>Год:</span>
-						@if($product->release_date)
-							{{ Carbon\Carbon::createFromFormat('Y-m-d', $product->release_date)->year }}
+					@if($product->release_date)
+						@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
+							<li><span>Дата:</span>
+								{{ Carbon\Carbon::parse($product->release_date)->format('m.d.Y') }}
+							</li>
+						@else
+							<li><span>Год:</span>
+								{{ Carbon\Carbon::createFromFormat('Y-m-d', $product->release_date)->year }}
+							</li>
 						@endif
-					</li> 
+					@endif
 					<li><span>UPC:</span> {{ $product->upc ?? "" }}</li>
 					@if($product->quantity > 0)
-						<li class="instock"><span>В наличии</span></li>
+						@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
+							<li class="preorder"><span>Предзаказ</span></li>
+						@else
+							@if(Str::contains($product->sku, 'BSC-'))
+								<li class="instock"><span>В наличии</span></li>
+							@endif
+						@endif
 					@else
 						<li class="outofstok"><span>Нет в наличии</span></li>
 					@endif
@@ -67,7 +79,11 @@
 							<form method="POST" action="{{ route('cart.store') }}">
 								@csrf
 								<input type="hidden" name="product_id" value="{{ $product->id }}">
-								<input class="item-price-btn" type="submit" name="" value="Купить">
+								@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
+									<input class="item-price-btn" type="submit" name="" value="Заказать">
+								@else
+									<input class="item-price-btn" type="submit" name="" value="Купить">
+								@endif
 							</form>
 						@else
 							<p>Уточнить о поступлении</p>
@@ -83,6 +99,9 @@
 				</ul>
 			</div>
 			<div class="description-content">
+				@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
+					<p style="color:red; font-weight:bold">Предзаказ <br> Дата релиза: {{ Carbon\Carbon::parse($product->release_date)->format('m.d.Y') }}</p>
+				@endif
 				@if($product->top_rs)
 					<p style="color:red; font-weight:bold">Занимает {{ $product->top_rs }} место из 500 в топе Rolling Stone, по версии журнала 500 величайших альбомов всех времен.</p>
 				@endif

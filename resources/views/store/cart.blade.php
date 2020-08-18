@@ -30,7 +30,15 @@
 							</a>
 						@endforelse
 					</div>
-					<div class="cart-item-title">{{ $product->name }} <br>by <a href="{{ route('store', ['searchField' => $product->model->name]) }}">{{ $product->model->name }}</a></div>
+					<div class="cart-item-title">{{ $product->name }} <br>by <a href="{{ route('store', ['searchField' => $product->model->name]) }}">{{ $product->model->name }}</a>
+						@if($product->model->release_date > Carbon\Carbon::now()->format('Y-m-d'))
+							<br>
+							<span style="color: red; font-size: 11px; font-style: italic">Предзаказ</span>
+						@elseif(!Str::contains($product->model->sku, 'BSC-'))
+							<br>
+							<span style="color: red; font-size: 11px; font-style: italic">Обработка заказа 10 рабочих дней</span>
+						@endif
+					</div>
 					<div class="cart-item-qty">{{ $product->qty }} шт.</div>
 					<div class="cart-item-price">{{ $product->price }} &#8381;</div>
 					<div class="cart-item-delete">
