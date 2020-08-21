@@ -46,7 +46,7 @@
 					@if($product->release_date)
 						@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
 							<li><span>Дата:</span>
-								{{ Carbon\Carbon::parse($product->release_date)->format('m.d.Y') }}
+								{{ Carbon\Carbon::parse($product->release_date)->format('d.m.Y') }}
 							</li>
 						@else
 							<li><span>Год:</span>
@@ -100,7 +100,7 @@
 			</div>
 			<div class="description-content">
 				@if($product->release_date > Carbon\Carbon::now()->format('Y-m-d'))
-					<p style="color:red; font-weight:bold">Предзаказ <br> Дата релиза: {{ Carbon\Carbon::parse($product->release_date)->format('m.d.Y') }}</p>
+					<p style="color:red; font-weight:bold">Предзаказ <br> Дата релиза: {{ Carbon\Carbon::parse($product->release_date)->format('d.m.Y') }}</p>
 				@endif
 				@if($product->top_rs)
 					<p style="color:red; font-weight:bold">Занимает {{ $product->top_rs }} место из 500 в топе Rolling Stone, по версии журнала 500 величайших альбомов всех времен.</p>
