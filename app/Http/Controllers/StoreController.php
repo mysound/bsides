@@ -153,8 +153,9 @@ class StoreController extends Controller
     {
         $ganre = Ganre::where('slug', $slug)->first();
 
+        $products = Product::where('ganre_id', $ganre->id);
         $products = $products->where('quantity', '>', 0);
-        $products = Product::where('ganre_id', $ganre->id)->paginate(15);
+        $products = $products->paginate(15);
         $viewArr = $this->viewArr();
         $viewArr['ganreslug'] = $ganre->slug;
         $viewArr['products'] = $products;

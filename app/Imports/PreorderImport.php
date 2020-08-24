@@ -113,6 +113,7 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
                 'sku'                   => $sku,
                 'name'                  => $row['artist'],
                 'title'                 => $row['album'],
+                'ganre_id'              => $this->ganre($row['genre']),
                 'quantity'              => '1',
                 'price'                 => $this->price($row['itemprice'], $row['exchangekey'], $this->skutitle, $row['category_id']),
                 'release_date'          => $this->transformDate($row['releasedate']),
@@ -121,7 +122,6 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
                 'short_description'     => $row['pack'],
                 'subtype_description'   => $row['format'],
                 'optional_description'  => $row['releasedate'],
-                'weight'                => 0.321,
                 'catalog_number'        => $row['catalognumber'],
                 'repertuare_key'        => $row['label'],
                 'slug'                  => $row['artist']
@@ -134,6 +134,15 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
     public function chunkSize(): int
     {
         return 30;
+    }
+
+    public function ganre($ganre)
+    {
+        if($ganre == 'Classic') {
+            return '2';
+        }
+
+        return null;
     }
 
     public function price($cost, $currency, $skutitle, $catid)
