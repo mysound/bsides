@@ -173,7 +173,8 @@ class ProductsController extends Controller
 
     public function nullifyQuantity(Request $request) {
 
-        $products = Product::where('sku', 'LIKE', $request->sku. '%')
+        $products = Product::where('release_date', '<=', \Carbon\Carbon::now()->format('Y-m-d'));
+        $products = $products->where('sku', 'LIKE', $request->sku. '%')
                                 ->update(['quantity' => 0]);
 
         return redirect()->route('admin.product.index')

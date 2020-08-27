@@ -185,7 +185,10 @@ class StoreController extends Controller
 
     public function newReleas()
     {
-        $products = Product::whereBetween('release_date', [date('Y-m-d', strtotime("-30 days")), $this->dateNow()])->paginate(15);
+        $products = Product::whereBetween('release_date', [date('Y-m-d', strtotime("-30 days")), $this->dateNow()]);
+
+        $products = $products->where('quantity', '>', 0);
+        $products = $products->paginate(15);
 
         $viewArr = $this->viewArr();
         $viewArr['products'] = $products;
