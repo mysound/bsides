@@ -51,7 +51,7 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
             $product->quantity = 1;
             $product->price = $this->price($row['itemprice'], $row['exchangekey'], $this->skutitle, $row['category_id']);
             $product->release_date = $this->transformDate($row['releasedate']);
-            $product->description = $row['salepoint'];
+            
             if(!$product->images->first()) {
                 if (isset($row['fullalbumcoverpath'])) {
                     stream_context_set_default( [
@@ -135,7 +135,7 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
 
     public function chunkSize(): int
     {
-        return 30;
+        return 5;
     }
 
     public function ganre($ganre)
