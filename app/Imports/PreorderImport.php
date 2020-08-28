@@ -50,6 +50,7 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
         if($product) {
             $product->quantity = 1;
             $product->price = $this->price($row['itemprice'], $row['exchangekey'], $this->skutitle, $row['category_id']);
+            $product->release_date = $this->transformDate($row['releasedate']);
             $product->description = $row['salepoint'];
             if(!$product->images->first()) {
                 if (isset($row['fullalbumcoverpath'])) {
@@ -119,6 +120,7 @@ class PreorderImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
                 'release_date'          => $this->transformDate($row['releasedate']),
                 'upc'                   => $row['barcode'],
                 'item_qty'              => $row['unitsperset'],
+                'description'           => $row['salepoint'],
                 'short_description'     => $row['pack'],
                 'subtype_description'   => $row['format'],
                 'optional_description'  => $row['releasedate'],
