@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image as ImageInt;
 use Storage;
 use Str;
+use Purifier;
 
 class Product extends Model
 {
@@ -25,6 +26,11 @@ class Product extends Model
     public function setSlugAttribute($value)
     {
         $this->attributes['slug'] = Str::slug($this->name);
+    }
+
+    public function setDescriptionAttribute($value)
+    {
+        $this->attributes['description'] = Purifier::clean($value);
     }
 
     public function category()
