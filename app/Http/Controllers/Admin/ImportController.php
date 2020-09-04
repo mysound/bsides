@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\ProductsImport;
 use App\Imports\PreorderImport;
+use App\Imports\QuantityImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Jobs\ImageImport;
 
@@ -68,6 +69,25 @@ class ImportController extends Controller
 
         Excel::import(new PreorderImport($skutitle, $currency_eur), $request->file('import_file'));
 
+        return redirect()->route('admin.product.index')->with('status', 'The file was successfully imported');
+    }
+
+    public function quantity(Request $request)
+    {
+        return view('admin.import.quantity');
+    }
+
+    public function qtystore(Request $request)
+    {
+        $this->validate(request(), [
+            'import_file'  =>  'file|required'
+        ]);
+
+        $skutitle = $request->sku_title;
+        $currency_eur = $request->currency_eur;
+
+        Excel::import(new QuantityImport($skutitle, $currency_eur), $request->file('import_file'));
+        
         return redirect()->route('admin.product.index')->with('status', 'The file was successfully imported');
     }
 }

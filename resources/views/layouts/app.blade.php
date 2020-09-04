@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {!! NoCaptcha::renderJs() !!}
 </head>
 <body>
     <div id="app">
