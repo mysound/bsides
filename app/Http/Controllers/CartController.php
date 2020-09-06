@@ -10,7 +10,11 @@ class CartController extends Controller
 {
     public function index()
     {
-    	return view('store.cart');
+        $shippingPrice = ((Cart::count() - 1) * 50) + 200;
+        
+    	return view('store.cart', [
+            'shippingPrice' => $shippingPrice
+        ]);
     }
 
     public function store(Request $request)

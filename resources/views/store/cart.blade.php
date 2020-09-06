@@ -63,7 +63,7 @@
 				<form method="POST" action="{{ route('order.store') }}">
 					@csrf
 					<div class="form-title form-line">
-						Доставка: <span class="shipping-title">Почта России</span> 200руб.
+						Доставка: <span class="shipping-title">Почта России</span> {{ $shippingPrice }}руб.
 					</div>
 					<div class="form-header-title">Получатель</div>						
 					<div class="form-part form-line form-flex">
@@ -158,8 +158,8 @@
 		<div class="cart-total-area">
 			<div class="br-cart cart-total">
 				<div><h3>Количество товаров: {{ Cart::count() }} шт.</h3></div>
-				<div><h3>Доставка: 200 &#8381;</h3></div>
-				<div><h2>Итого: {{ Cart::subtotal(2,'.','')+200 }} &#8381;</h2></div>
+				<div><h3>Доставка: {{ $shippingPrice }} &#8381;</h3></div>
+				<div><h2>Итого: {{ Cart::subtotal(2,'.','') + $shippingPrice }} &#8381;</h2></div>
 			</div>
 		</div>
 	</div>
