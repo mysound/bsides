@@ -61,6 +61,8 @@
 						@else
 							@if(Str::contains($product->sku, 'BSC-'))
 								<li class="instock"><span>В наличии</span></li>
+							@else
+								<li><span class="instock">В наличии на складе </span><br><span style="color: red; font-size: 11px; font-style: italic; font-weight: normal;">Обработка заказа 10 рабочих дней</span></li>
 							@endif
 						@endif
 					@else
