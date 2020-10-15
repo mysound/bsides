@@ -39,6 +39,9 @@ Auth::routes();
 Route::get('/', 'StoreController@index')->name('store.index');
 Route::get('/store', 'StoreController@shope')->name('store');
 Route::get('/store/all-artists', 'StoreController@allartist')->name('all-artists');
+
+Route::get('/store/response', 'StoreController@response');
+
 Route::get('/collection/{name}', 'StoreController@name')->name('porductname');
 Route::get('/store/{slug}/{name?}', 'StoreController@catslug')->name('category');
 Route::get('/{category}/{name}/{product}{title}', 'StoreController@view')->name('view.product');
@@ -46,6 +49,7 @@ Route::get('/box-sets', 'StoreController@boxset')->name('boxset');
 Route::get('/pre-order', 'StoreController@preorder')->name('preorder');
 Route::get('/new-products', 'StoreController@newReleas')->name('newproducts');
 Route::get('/ganre/{slug}/{category?}', 'StoreController@ganreslug')->name('store.ganre');
+
 
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::post('/cart', 'CartController@store')->name('cart.store');

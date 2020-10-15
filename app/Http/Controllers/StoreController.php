@@ -236,4 +236,9 @@ class StoreController extends Controller
     {
         return view('store.policy');
     }
+
+    public function response()
+    {
+        echo "SUCCESS";
+    }
 }
