@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Ganre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class StoreController extends Controller
@@ -126,7 +127,9 @@ class StoreController extends Controller
         $category = Category::where('slug', $slug)->first();
 
         $products = new Product;
-
+        
+        $name = Str::slug($name, '-');
+        
         if($name) {
             $products = Product::where('slug', 'LIKE' , '%' . $name . '%');
         }

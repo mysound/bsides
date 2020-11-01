@@ -7,7 +7,7 @@
 @section('content')
 	<div class="viewcontent">
 		<div class="view-title">
-			<h1>{{ $product->title }} от <a href="{{ route('porductname', Str::slug($product->name)) }}">{{ $product->name }}</a></h1>
+			<h1>{{ strtoupper($product->title) }} от <a href="{{ route('porductname', Str::slug($product->name)) }}">{{ strtoupper($product->name) }}</a></h1>
 		</div>
 		<div class="view-item">
 			<div class="view-item-image">
