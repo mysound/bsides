@@ -202,12 +202,18 @@ header {
 
 .nav-flyout {
 	top: 153px;
-	display: none;
+	/*display: none;*/
 	position: absolute;
 	background-color: #fff;
 	width: 100%;
-	min-height: 380px;
+	/*min-height: 380px;*/
 	box-shadow: 0 0 5px 0 #E5E5E5;
+
+	max-height:0px;
+    overflow:hidden;
+    -webkit-transition:max-height 2s ease-in-out;
+    -moz-transition:max-height 2s ease-in-out;
+    transition:max-height 2s ease-in-out;
 }
 
 .nav-flyout-content {
@@ -219,11 +225,13 @@ header {
 }
 
 .menu-flyout:hover + .nav-flyout {
-	display: block;
+	/*display: block;*/
+	max-height: 2000px;
 }
 
 .nav-flyout:hover {
-	display: block;
+	/*display: block;*/
+	max-height: 2000px;
 }
 
 .flayout-menu {
@@ -525,6 +533,14 @@ footer {
 .view-title {
 	border-bottom: 1px solid #E5E5E5;
 	margin-top: -10px;
+}
+
+.view-title a {
+	color: #0066c0;
+}
+
+.view-title a:hover {
+	color: #F3A847;
 }
 
 .view-item {

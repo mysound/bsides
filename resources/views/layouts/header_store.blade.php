@@ -42,7 +42,7 @@
 </header>
 <div class="menu">
 	<div class="menu-block allmusic"><a href="{{ route('store') }}">Магазин</a></div>
-	<div class="menu-block menu-flyout"><a href="#">Популярные</a></div>
+	<div class="menu-block menu-flyout"><a href="#">Популярные <span>&#9662;</span></a></div>
 	<div class="nav-flyout">
 		<div class="nav-flyout-content">
 			<div class="flayout-menu">
