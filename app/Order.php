@@ -8,7 +8,7 @@ class Order extends Model
 {
     public function products()
     {
-    	return $this->belongsToMany('App\Product')->withPivot('quantity');
+    	return $this->belongsToMany('App\Product')->withPivot('quantity', 'price');
     }
 
     public function user()
@@ -19,5 +19,10 @@ class Order extends Model
     public function address()
     {
     	return $this->belongsTo('App\Address');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
     }
 }

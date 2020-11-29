@@ -1,5 +1,21 @@
 @component('mail::message')
-# Новый заказ № {{ $order->id }}
+# Здравствуйте, {{ $order->user->name }}!
+
+Ваш заказ в обработке, ожидает оплаты
+
+Заказ № {{ $order->id }}
+
+@component('mail::table')
+| Название        | Кол     | Цена    |
+|:----------------|:-------:| -------:|
+@foreach($order->products as $product)
+| {{ $product->name }} - {{ $product->title }} ({{ $product->category->title }}) <br> {{ $product->upc }} | {{ $product->pivot->quantity }} шт. | {{ $product->price }} руб.|
+@endforeach
+@endcomponent
+
+Доставка: {{ $shippingPrice }} руб.
+
+<span style="font-weight: bold;">Итого:</span> {{ $order->total + $shippingPrice }} руб.
 
 Покупатель: {{ $order->user->name }}<br>
 E-Mail: {{ $order->user->email }}
@@ -12,18 +28,10 @@ E-Mail: {{ $order->user->email }}
 <span style="font-size: 14px; font-weight: bold;">Адрес:</span> {{ $order->address->address }}, <br>
 <span style="font-size: 14px; font-weight: bold;">Индекс:</span> {{ $order->address->zip_code }}, <br>
 <span style="font-size: 14px; font-weight: bold;">Телефон:</span> {{ $order->address->phone }}, <br>
-<span style="font-size: 14px; font-weight: bold;">Сумма заказа:</span> {{ $order->total }} руб. <br><br>
+<span style="font-size: 14px; font-weight: bold;">Сумма заказа:</span> {{ $order->total + $shippingPrice }} руб. <br><br>
 <span style="font-size: 14px; font-weight: bold; font-style: italic">Комментарий:</span> {{ $order->comment }}
 @endcomponent
 
-@component('mail::table')
-| Title        | Qty    | Price    |
-|:-------------|:------:| --------:|
-@foreach($order->products as $product)
-| {{ $product->name }} - {{ $product->title }} ({{ $product->category->title }}) <br> {{ $product->sku }} | {{ $product->pivot->quantity }} | {{ $product->price }} руб.|
-@endforeach
-@endcomponent
-
-Thanks,<br>
+Спасибо,<br>
 {{ config('app.name') }}
 @endcomponent

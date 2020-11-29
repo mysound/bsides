@@ -22,7 +22,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon2">EUR</span>
 						</div>
-                    	<input class="form-control" type="text" name="currency_eur" aria-describedby="basic-addon2" value="70">
+                    	<input class="form-control" type="text" name="currency_eur" aria-describedby="basic-addon2" value="75">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">

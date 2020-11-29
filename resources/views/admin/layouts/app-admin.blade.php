@@ -38,6 +38,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.product.index') }}">Products</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.brand.index') }}">Brands</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.ganre.index') }}">Ganres</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.order.index') }}">Orders</a></li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0" action="{{ route('admin.product.index') }}" method="GET">
                         @csrf
