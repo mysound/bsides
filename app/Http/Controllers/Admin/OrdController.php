@@ -85,7 +85,11 @@ class OrdController extends Controller
             $order->save();
         }
 
-        return redirect()->route('admin.order.show', compact('order'));
+        if($request->dlt_item) {
+            $order->deleteItem($request->dlt_item);
+        }
+
+        return redirect()->route('admin.order.show', compact('order'))->with('message', 'Заказ изменен');
     }
 
     /**
@@ -96,7 +100,9 @@ class OrdController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->products()->detach();
+        $order->delete();
+        return redirect()->route('admin.order.index')->with('message', 'Заказ удален');
     }
 
     public function paymethod(Order $order)
@@ -108,6 +114,6 @@ class OrdController extends Controller
             ->cc($mailcopy)
             ->send(new PaymentMethod($order));
 
-        return redirect()->route('admin.order.show', compact('order'))->with('message', 'Сообщение отправленно');;
+        return redirect()->route('admin.order.show', compact('order'))->with('pay_message', 'Сообщение отправленно');
     }
 }

@@ -25,4 +25,13 @@ class Order extends Model
     {
         return $this->belongsTo('App\Status');
     }
+
+    public function deleteItem($id)
+    {
+        $this->total = $this->total - $this->products()->find($id)->pivot->price;
+        $this->subtotal = $this->subtotal - $this->products()->find($id)->pivot->price;
+        $this->save();
+        
+        $this->products()->detach($id);
+    }
 }

@@ -7,6 +7,11 @@
 			@slot('parent') Main @endslot
 			@slot('active') Orders <span class="badge badge-pill badge-info" ></span> @endslot
 		@endcomponent
+		@if (session('message'))
+		    <div class="alert alert-success" role="alert">
+		        {{ session('message') }}
+		    </div>
+		@endif
 		<table class="table">
 			<thead>
 				<tr>
@@ -16,6 +21,7 @@
 					<th scope="col">Статус заказа</th>
 					<th scope="col">Номер отслеживания</th>
 					<th scope="col">Дата заказа</th>
+					<th scope="col">Удалить</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,10 +41,17 @@
 						</td>
 						<td>{{ $order->shipping_no }}</td>
 						<td>{{ Carbon\Carbon::parse($order->created_at)->format('d.m.Y - H:m') }}</td>
+						<td>
+							<form method="POST" action="{{ route('admin.order.destroy', $order) }}" onsubmit="if(confirm('Удалить заказ?')){ return true }else{ return false }">
+								@method('DELETE')
+								@csrf
+								<button type="submit" class="badge badge-danger" style="border:none;">Удалить</button>
+							</form>
+						</td>
 					</tr>
 				@empty
 					<tr>
-						<td colspan="6" class="text-center"><h2>Empty</h2></td>
+						<td colspan="7" class="text-center"><h2>Empty</h2></td>
 					</tr>
 				@endforelse
 			</tbody>

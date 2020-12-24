@@ -7,6 +7,11 @@
 			@slot('parent') Main @endslot
 			@slot('active') Orders <span class="badge badge-pill badge-info" ></span> @endslot
 		@endcomponent
+		@if (session('message'))
+		    <div class="alert alert-success" role="alert">
+		        {{ session('message') }}
+		    </div>
+		@endif
 		<hr>
 		<div class="row">
 			<div class="col-12">
@@ -18,9 +23,9 @@
 				Покупатель: {{ $order->user->name }} <br>
 				Электронная почта: {{ $order->user->email }}<br>
 				Дата продажи: {{ Carbon\Carbon::parse($order->created_at)->format('d.m.Y - H:m:s') }}<br>
-				@if (session('message'))
+				@if (session('pay_message'))
 					<div>
-						Способ оплаты: <span class="text-success">{{ session('message') }}</span>
+						Способ оплаты: <span class="text-success">{{ session('pay_message') }}</span>
 					</div>
 				@elseif($order->status && $order->status->id < 4)
 					Способ оплаты: <a href="{{ route('admin.order.paymethod', $order) }}">Перевод на карту</a><br>
@@ -79,6 +84,11 @@
 					<button type="submit" class="btn btn-primary mx-sm-3 mb-2">Изменить</button>
 				</form>
 			</div>
+			@if ($order->comment)
+			    <div class="col-12 ">
+					<div class="alert alert-info" role="alert">{{ $order->comment }}</div>
+			    </div>
+			@endif
 			<div class="col-12">
 				<br>
 				<h4>Товары:</h4>
@@ -108,7 +118,12 @@
 									{{ $product->pivot->price }} руб.
 								</td>
 								<td>
-									<span class="badge badge-danger">Удалить из заказа</span>
+									<form method="POST" class="form-inline" action="{{ route('admin.order.update', $order) }}" enctype="multipart/form-data">
+										@method('PUT')
+										@csrf
+										<input type="hidden" name="dlt_item" value="{{ $product->id }}">
+										<button class="badge badge-danger" style="border:none;">Удалить из заказа</button>
+									</form>
 								</td>
 							</tr>
 						@empty
