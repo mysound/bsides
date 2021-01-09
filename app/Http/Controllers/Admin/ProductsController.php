@@ -177,7 +177,12 @@ class ProductsController extends Controller
         $products = $products->where('sku', 'LIKE', $request->sku. '%')
                                 ->update(['quantity' => 0]);
 
+        $productsDateN =  Product::where([
+                                ['release_date', NULL],
+                                ['sku', 'LIKE', $request->sku. '%']
+                            ])->update(['quantity' => 0]);
+
         return redirect()->route('admin.product.index')
-                            ->with('status', 'Quantity changed successfully');;
+                            ->with('status', 'Quantity changed successfully');
     }
 }
