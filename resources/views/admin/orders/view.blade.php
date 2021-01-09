@@ -85,7 +85,8 @@
 				</form>
 			</div>
 			@if ($order->comment)
-			    <div class="col-12 ">
+			    <div class="col-12">
+			    	<p><em>Комментарий:</em></p>
 					<div class="alert alert-info" role="alert">{{ $order->comment }}</div>
 			    </div>
 			@endif
@@ -105,10 +106,16 @@
 						@forelse($order->products as $product)
 							<tr>
 								<td>
-									@foreach($product->images as $image)
-										<img class="img" src="{{ asset('storage/images/thumbnails/' . $image->title) }}" width="50">
-										@break
-									@endforeach
+									<a href="{{ $product->slugurl() }}">
+										@if($product->images->first())
+											@foreach($product->images as $image)
+												<img class="img" src="{{ asset('storage/images/thumbnails/' . $image->title) }}" width="50">
+												@break
+											@endforeach
+										@else
+											<img src="{{ asset('storage/images/thumbnails/noimage.png') }}" width="50">
+										@endif
+									</a>
 									{{ $product->name }} - {{ $product->title }}
 								</td>
 								<td>
