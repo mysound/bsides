@@ -62,7 +62,6 @@ class Product extends Model
     {
         $i = 0;
         foreach ($files as $file) {
-            $imagetitle = Str::slug($this->title . ' ' . $this->name . ' ' . time(), '-') . $i++ . '.' . $file->getClientOriginalExtension();
             $imagetitle = Str::slug(substr($this->title, 0, 110) . ' ' . substr($this->name, 0, 110) . ' ' . time(), '-') . $i++ . '.' . $file->getClientOriginalExtension();
             $picture = ImageInt::make($file)
                 ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
