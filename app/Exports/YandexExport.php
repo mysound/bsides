@@ -15,7 +15,10 @@ class YandexExport implements FromCollection, WithMapping
     */
     public function collection()
     {
-        return Product::where('sku', 'LIKE', 'BSC-' . '%')->get();
+        return Product::where([
+            ['sku', 'LIKE', 'BSC-' . '%'],
+            ['quantity', '>', 0]
+        ])->get();
     }
 
     public function map($row): array
