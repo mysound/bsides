@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\ProductsFilter;
 use App\Category;
 use App\Brand;
 use App\Ganre;
@@ -19,34 +20,17 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
-        $products = new Product;
+        $products = Product::with('images', 'counter');
 
-        if($request->has('searchField')) {
-            $products = $products->where('name', 'LIKE', '%' . $request->searchField. '%')
-                                    ->orwhere('title', 'LIKE', '%' . $request->searchField. '%')
-                                    ->orwhere('upc', $request->searchField);
-        }
+        $products = (new ProductsFilter($products, $request))->apply()->paginate(10)
+                        ->appends([
+                            'sortPrice'     => $request->sortPrice,
+                            'sortViews'     => $request->sortViews,
+                            'noImg'         => $request->noImg,
+                            'searchField'   => $request->searchField
+                        ]);
 
-        if($request->has('sortType')) {
-            $products = $products->orderBy('price', $request->sortType);
-        }
-
-        if($request->noImg == true) {
-            $products = $products->doesntHave('images');
-        }
-
-        $products = $products->paginate(10)->appends([
-            'sortType'      => $request->sortType,
-            'noImg'         => $request->noImg,
-            'searchField'   => $request->searchField
-        ]);
-
-        return view('admin.products.index', [
-            'products'      => $products,
-            'sortType'      => $request->sortType,
-            'noImg'         => $request->noImg,
-            'searchField'   => $request->searchField
-        ]);
+        return view('admin.products.index', compact('products'));
     }
 
     /**

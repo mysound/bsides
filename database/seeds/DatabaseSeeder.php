@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
         	GanresTableSeeder::class,
         	CategoriesTableSeeder::class,
-        	CountriesTableSeeder::class
+        	CountriesTableSeeder::class,
+            StatusesTableSeeder::class,
+            VendorsTableSeeder::class
         ]);
     }
 }

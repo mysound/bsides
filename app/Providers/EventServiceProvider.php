@@ -29,6 +29,12 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen('productHasViewed', function ($product) {
+            
+            $product->counter()->updateOrCreate(
+                ['product_id' => $product->id],
+                ['view_count' => ++$product->counter->view_count]
+            );
+        });
     }
 }

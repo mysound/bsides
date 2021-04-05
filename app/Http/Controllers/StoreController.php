@@ -20,6 +20,7 @@ class StoreController extends Controller
 
     public function view($category, $name, Product $product)
     {
+        event('productHasViewed', $product);
         return view('store.view', compact('product'), [
             'items' => Product::all()->random(4)
         ]);

@@ -58,6 +58,13 @@ class Product extends Model
         return $this->belongsToMany('App\Order');
     }
 
+    public function counter()
+    {
+        return $this->hasOne(Count::class)->withDefault([
+            'view_count' => 0
+        ]);
+    }
+
     public function addImage($files)
     {
         $i = 0;
