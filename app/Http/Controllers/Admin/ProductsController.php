@@ -26,7 +26,7 @@ class ProductsController extends Controller
                         ->appends([
                             'sortPrice'     => $request->sortPrice,
                             'sortViews'     => $request->sortViews,
-                            'sortCart'     => $request->sortCart,
+                            'sortCart'      => $request->sortCart,
                             'noImg'         => $request->noImg,
                             'searchField'   => $request->searchField
                         ]);

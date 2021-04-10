@@ -39,9 +39,9 @@
 				</th>
 				<th>
 					@if(request()->sortViews == 'ASC')
-						<a href="{{ route('admin.product.index', ['sortViews' => 'DESC']) }}">Views &#9650;</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortViews' => 'DESC']) }}">Views &#9650;</a>
 					@elseif(request()->sortViews == 'DESC' or request()->sortViews == '')
-						<a href="{{ route('admin.product.index', ['sortViews' => 'ASC']) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortViews' => 'ASC']) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>
