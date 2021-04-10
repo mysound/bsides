@@ -30,4 +30,11 @@ class ProductsFilter extends QueryFilter
 			->whereColumn('counts.product_id', 'products.id'), $value
 		);
 	}
+
+	public function sortCart($value)
+	{
+		$this->builder->orderBy(Count::select('cart_count')
+			->whereColumn('counts.product_id', 'products.id'), $value
+		);
+	}
 }

@@ -36,5 +36,13 @@ class EventServiceProvider extends ServiceProvider
                 ['view_count' => ++$product->counter->view_count]
             );
         });
+
+        Event::listen('productHasAddedCart', function ($product) {
+            
+            $product->counter()->updateOrCreate(
+                ['product_id' => $product->id],
+                ['cart_count' => ++$product->counter->cart_count]
+            );
+        });
     }
 }

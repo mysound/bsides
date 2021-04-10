@@ -44,6 +44,13 @@
 						<a href="{{ route('admin.product.index', ['sortViews' => 'ASC']) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
 					@endif
 				</th>
+				<th>
+					@if(request()->sortCart == 'ASC')
+						<a href="{{ route('admin.product.index', ['sortCart' => 'DESC']) }}">Cart &#9650;</a>
+					@elseif(request()->sortCart == 'DESC' or request()->sortCart == '')
+						<a href="{{ route('admin.product.index', ['sortCart' => 'ASC']) }}">Cart @if(!request()->sortCart == '')&#9660;@endif</a>
+					@endif
+				</th>
 				<th>Name / Artist</th>
 				<th>Title</th>
 				<th>Qty</th>
@@ -69,6 +76,7 @@
 							@endforeach
 						</td>
 						<td>{{ $product->counter->view_count }}</td>
+						<td>{{ $product->counter->cart_count }}</td>
 						<td>{{ $product->name }}</td>
 						<td>{{ $product->title }}</td>
 						<td>{{ $product->quantity }}</td>
@@ -85,13 +93,13 @@
 					</tr>
 				@empty
 					<tr>
-						<td colspan="10" class="text-center"><h2>Empty</h2></td>
+						<td colspan="11" class="text-center"><h2>Empty</h2></td>
 					</tr>
 				@endforelse
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="10">
+					<td colspan="11">
 						<ul class="pagination pull-right">{{ $products->links() }}</ul>
 					</td>
 				</tr>

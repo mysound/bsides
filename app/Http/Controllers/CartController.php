@@ -24,6 +24,8 @@ class CartController extends Controller
         if(!Cart::count()) {
             Cart::add($product->id, $product->title, 1, $product->price)
                 ->associate('App\Product');
+                
+            event('productHasAddedCart', $product);
         } else {
             $item = Cart::search(function ($cartItem, $rowId) use ($id){
                 return $cartItem->id === $id;
@@ -31,6 +33,8 @@ class CartController extends Controller
             if($item->isEmpty()) {
                 Cart::add($product->id, $product->title, 1, $product->price)
                     ->associate('App\Product');
+
+                event('productHasAddedCart', $product);
             }
         }
 
