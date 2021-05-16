@@ -116,7 +116,7 @@
 											<img src="{{ asset('storage/images/thumbnails/noimage.png') }}" width="50">
 										@endif
 									</a>
-									{{ $product->name }} - {{ $product->title }}
+									{{ $product->name }} - {{ $product->title }} - {{ $product->upc }}
 								</td>
 								<td>
 									{{ $product->pivot->quantity }}

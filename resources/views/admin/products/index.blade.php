@@ -53,12 +53,18 @@
 				</th>
 				<th>Name / Artist</th>
 				<th>Title</th>
-				<th>Qty</th>
+				<th>
+					@if(request()->sortQty == 'ASC')
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortQty' => 'DESC']) }}">Qty &#9650;</a>
+					@elseif(request()->sortQty == 'DESC' or request()->sortQty == '')
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortQty' => 'ASC']) }}">Qty @if(!request()->sortQty == '')&#9660;@endif</a>
+					@endif
+				</th>
 				<th>
 					@if(request()->sortPrice == 'ASC')
-						<a href="{{ route('admin.product.index', ['sortPrice' => 'DESC']) }}">Price &#9650;</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortPrice' => 'DESC']) }}">Price &#9650;</a>
 					@elseif(request()->sortPrice == 'DESC' or request()->sortPrice == '')
-						<a href="{{ route('admin.product.index', ['sortPrice' => 'ASC']) }}">Price @if(!request()->sortPrice == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortPrice' => 'ASC']) }}">Price @if(!request()->sortPrice == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>Category</th>				
@@ -70,10 +76,12 @@
 					<tr style="line-height: 40px;">
 						<td>{{ $product->id }}</td>
 						<td>
-							@foreach($product->images as $image)
-								<img class="img" src="{{ asset('storage/images/thumbnails/' . $image->title) }}" width="35">
-								@break
-							@endforeach
+							<a href="{{ $product->slugurl() }}">
+								@foreach($product->images as $image)
+									<img class="img" src="{{ asset('storage/images/thumbnails/' . $image->title) }}" width="35">
+									@break
+								@endforeach
+							</a>
 						</td>
 						<td>{{ $product->counter->view_count }}</td>
 						<td>{{ $product->counter->cart_count }}</td>

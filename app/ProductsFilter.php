@@ -37,4 +37,9 @@ class ProductsFilter extends QueryFilter
 			->whereColumn('counts.product_id', 'products.id'), $value
 		);
 	}
+
+	public function sortQty($value)
+	{
+		$this->builder->orderBy('quantity', $value);
+	}
 }
