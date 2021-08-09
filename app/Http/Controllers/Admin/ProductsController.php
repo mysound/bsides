@@ -28,7 +28,8 @@ class ProductsController extends Controller
                             'sortViews'     => $request->sortViews,
                             'sortCart'      => $request->sortCart,
                             'noImg'         => $request->noImg,
-                            'searchField'   => $request->searchField
+                            'searchField'   => $request->searchField,
+                            'skuFilter'     => $request->skuFilter
                         ]);
 
         return view('admin.products.index', compact('products'));

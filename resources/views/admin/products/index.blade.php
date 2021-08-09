@@ -8,13 +8,20 @@
 			@slot('active') Products <span class="badge badge-pill badge-info" >{{ $products->total() }}</span> @endslot
 		@endcomponent
 		<div class="row">
+			<div class="col-md-4">
+				<form class="form-inline" method="GET" action="{{ route('admin.product.index') }}">
+					@csrf
+					<input class="form-control mr-sm-2" type="text" name="skuFilter" placeholder="SKU">
+					<button type="submit" class="btn btn-info">SKU Filter</button>
+				</form>
+			</div>
 			<div class="col-md-3">
 				<a href="{{ route('admin.product.create') }}" class="btn btn-primary">+ Add Product</a>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-1">
 				<a href="{{ route('admin.export') }}" class="btn btn-secondary">EXPORT</a>				
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-1">
 				<a href="{{ route('admin.import') }}" class="btn btn-success">IMPORT</a>				
 			</div>
 			<div class="col-md-3 text-right">
@@ -39,20 +46,21 @@
 				</th>
 				<th>
 					@if(request()->sortViews == 'ASC')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortViews' => 'DESC']) }}">Views &#9650;</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortViews' => 'DESC']) }}">Views &#9650;</a>
 					@elseif(request()->sortViews == 'DESC' or request()->sortViews == '')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortViews' => 'ASC']) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortViews' => 'ASC']) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>
 					@if(request()->sortCart == 'ASC')
-						<a href="{{ route('admin.product.index', ['sortCart' => 'DESC']) }}">Cart &#9650;</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortCart' => 'DESC']) }}">Cart &#9650;</a>
 					@elseif(request()->sortCart == 'DESC' or request()->sortCart == '')
-						<a href="{{ route('admin.product.index', ['sortCart' => 'ASC']) }}">Cart @if(!request()->sortCart == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortCart' => 'ASC']) }}">Cart @if(!request()->sortCart == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>Name / Artist</th>
 				<th>Title</th>
+				<th>SKU</th>
 				<th>
 					@if(request()->sortQty == 'ASC')
 						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortQty' => 'DESC']) }}">Qty &#9650;</a>
@@ -87,6 +95,7 @@
 						<td>{{ $product->counter->cart_count }}</td>
 						<td>{{ $product->name }}</td>
 						<td>{{ $product->title }}</td>
+						<td>{{ $product->sku }}</td>
 						<td>{{ $product->quantity }}</td>
 						<td>{{ $product->price }}</td>
 						<td>{{ $product->category->title }}</td>						
@@ -101,13 +110,13 @@
 					</tr>
 				@empty
 					<tr>
-						<td colspan="11" class="text-center"><h2>Empty</h2></td>
+						<td colspan="12" class="text-center"><h2>Empty</h2></td>
 					</tr>
 				@endforelse
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="11">
+					<td colspan="12">
 						<ul class="pagination pull-right">{{ $products->links() }}</ul>
 					</td>
 				</tr>

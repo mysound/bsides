@@ -42,4 +42,9 @@ class ProductsFilter extends QueryFilter
 	{
 		$this->builder->orderBy('quantity', $value);
 	}
+
+	public function skuFilter($value)
+	{
+		$this->builder->where('sku', 'LIKE', $value. '%');
+	}
 }
