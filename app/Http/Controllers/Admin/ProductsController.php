@@ -29,10 +29,17 @@ class ProductsController extends Controller
                             'sortCart'      => $request->sortCart,
                             'noImg'         => $request->noImg,
                             'searchField'   => $request->searchField,
-                            'skuFilter'     => $request->skuFilter
+                            'nameField'     => $request->nameField,
+                            'titleField'    => $request->titleField,
+                            'skuFilter'     => $request->skuFilter,
+                            'catFilter'     => $request->catFilter
                         ]);
 
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', [
+            'products' => $products,
+            'categories' => Category::with('children')->where('parent_id', '0')->get(),
+            'separator'  => ''
+        ]);
     }
 
     /**

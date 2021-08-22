@@ -12,6 +12,28 @@ class ProductsFilter extends QueryFilter
 						->orwhere('upc', $value);
 	}
 
+	public function nameFilter($value)
+	{
+		$this->builder->where('name', 'LIKE', '%' . $value. '%');
+	}
+
+	public function titleFilter($value)
+	{
+		$this->builder->where('title', 'LIKE', '%' . $value. '%');
+	}
+
+	public function skuFilter($value)
+	{
+		$this->builder->where('sku', 'LIKE', $value. '%');
+	}
+
+	public function catFilter($value)
+	{
+		if($value) {
+			$this->builder->where('category_id', $value);
+		}
+	}
+
 	public function noImg($value)
 	{
 		if($value) {
@@ -41,10 +63,5 @@ class ProductsFilter extends QueryFilter
 	public function sortQty($value)
 	{
 		$this->builder->orderBy('quantity', $value);
-	}
-
-	public function skuFilter($value)
-	{
-		$this->builder->where('sku', 'LIKE', $value. '%');
 	}
 }

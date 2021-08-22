@@ -8,24 +8,33 @@
 			@slot('active') Products <span class="badge badge-pill badge-info" >{{ $products->total() }}</span> @endslot
 		@endcomponent
 		<div class="row">
-			<div class="col-md-4">
-				<form class="form-inline" method="GET" action="{{ route('admin.product.index') }}">
-					@csrf
-					<input class="form-control mr-sm-2" type="text" name="skuFilter" placeholder="SKU">
-					<button type="submit" class="btn btn-info">SKU Filter</button>
-				</form>
-			</div>
 			<div class="col-md-3">
 				<a href="{{ route('admin.product.create') }}" class="btn btn-primary">+ Add Product</a>
 			</div>
-			<div class="col-md-1">
+			<div class="col-md-3">
 				<a href="{{ route('admin.export') }}" class="btn btn-secondary">EXPORT</a>				
 			</div>
-			<div class="col-md-1">
+			<div class="col-md-3">
 				<a href="{{ route('admin.import') }}" class="btn btn-success">IMPORT</a>				
 			</div>
 			<div class="col-md-3 text-right">
 				<a href="{{ route('admin.product.quantity') }}" class="btn btn-info">NULLIFY QUANTITY</a>				
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-12">
+				<form class="form-inline" method="GET" action="{{ route('admin.product.index') }}">
+					@csrf
+					<input class="form-control mr-sm-2" type="text" name="nameFilter" placeholder="Name" value="{{ request()->nameFilter }}">
+					<input class="form-control mr-sm-2" type="text" name="titleFilter" placeholder="Title" value="{{ request()->titleFilter }}">
+					<input class="form-control mr-sm-2" type="text" name="skuFilter" placeholder="SKU" value="{{ request()->skuFilter }}">
+					<select class="form-control mr-sm-2" name="catFilter">
+						<option value="" selected>-- All Categories --</option>
+						@include('admin.products.partials.categories', ['categories' => $categories])
+					</select>
+					<button type="submit" class="btn btn-outline-success">Filter</button>
+				</form>
 			</div>
 		</div>
 		<br>
@@ -46,16 +55,44 @@
 				</th>
 				<th>
 					@if(request()->sortViews == 'ASC')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortViews' => 'DESC']) }}">Views &#9650;</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField, 
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter, 
+							'skuFilter' => request()->skuFilter, 
+							'sortViews' => 'DESC'
+						]) }}">Views &#9650;</a>
 					@elseif(request()->sortViews == 'DESC' or request()->sortViews == '')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortViews' => 'ASC']) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField, 
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter, 
+							'skuFilter' => request()->skuFilter, 
+							'sortViews' => 'ASC'
+						]) }}">Views @if(!request()->sortViews == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>
 					@if(request()->sortCart == 'ASC')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortCart' => 'DESC']) }}">Cart &#9650;</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField,
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter,
+							'skuFilter' => request()->skuFilter, 
+							'sortCart' => 'DESC'
+						]) }}">Cart &#9650;</a>
 					@elseif(request()->sortCart == 'DESC' or request()->sortCart == '')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'skuFilter' => request()->skuFilter, 'sortCart' => 'ASC']) }}">Cart @if(!request()->sortCart == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField,
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter,
+							'skuFilter' => request()->skuFilter, 
+							'sortCart' => 'ASC'
+						]) }}">Cart @if(!request()->sortCart == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>Name / Artist</th>
@@ -63,16 +100,44 @@
 				<th>SKU</th>
 				<th>
 					@if(request()->sortQty == 'ASC')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortQty' => 'DESC']) }}">Qty &#9650;</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField,
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter,
+							'skuFilter' => request()->skuFilter, 
+							'sortQty' => 'DESC'
+						]) }}">Qty &#9650;</a>
 					@elseif(request()->sortQty == 'DESC' or request()->sortQty == '')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortQty' => 'ASC']) }}">Qty @if(!request()->sortQty == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField,
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter,
+							'skuFilter' => request()->skuFilter, 
+							'sortQty' => 'ASC'
+						]) }}">Qty @if(!request()->sortQty == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>
 					@if(request()->sortPrice == 'ASC')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortPrice' => 'DESC']) }}">Price &#9650;</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField,
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter,
+							'skuFilter' => request()->skuFilter,
+							'sortPrice' => 'DESC'
+						]) }}">Price &#9650;</a>
 					@elseif(request()->sortPrice == 'DESC' or request()->sortPrice == '')
-						<a href="{{ route('admin.product.index', ['searchField' => request()->searchField, 'sortPrice' => 'ASC']) }}">Price @if(!request()->sortPrice == '')&#9660;@endif</a>
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField,
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter,
+							'skuFilter' => request()->skuFilter, 
+							'sortPrice' => 'ASC'
+						]) }}">Price @if(!request()->sortPrice == '')&#9660;@endif</a>
 					@endif
 				</th>
 				<th>Category</th>				
