@@ -13,8 +13,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     {!! NoCaptcha::renderJs() !!}
-</head>
-<body>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHJVJ1Z6EG"></script>
     <script>
@@ -23,7 +21,10 @@
         gtag('js', new Date());
 
         gtag('config', 'G-RHJVJ1Z6EG');
+        gtag('config', 'UA-206274199-1');
     </script>
+</head>
+<body>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
