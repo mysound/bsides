@@ -107,7 +107,9 @@
 				@if($product->top_rs)
 					<p style="color:red; font-weight:bold">Занимает {{ $product->top_rs }} место из 500 в топе Rolling Stone, по версии журнала 500 величайших альбомов всех времен.</p>
 				@endif
-				<p>{!! $product->description ?? $product->name . ' - ' . $product->title . ' (' . $product->category->title . ')'!!}</p>
+				@if($product->description == "")
+					<p>{!!$product->name . ' - ' . $product->title . ' (' . $product->category->title . ')'!!}</p>
+				@endif
 			</div>
 		</div>
 		<div class="view-also">
