@@ -16,7 +16,7 @@
                     	<div class="input-group-prepend">
                     		<span class="input-group-text" id="basic-addon1">SKU</span>
 						</div>
-						<input class="form-control" type="text" name="sku_title" value="WMR-" readonly="">
+						<input class="form-control" type="text" name="sku_title" value="{{ $sku_title ?? 'ERROR SKU TITLE'}}" readonly="">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">

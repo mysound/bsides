@@ -74,7 +74,9 @@ class ImportController extends Controller
 
     public function quantity(Request $request)
     {
-        return view('admin.import.quantity');
+        return view('admin.import.quantity', [
+            'sku_title' => $request->sku
+        ]);
     }
 
     public function qtystore(Request $request)

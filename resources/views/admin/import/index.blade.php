@@ -36,7 +36,9 @@
 					<div class="card-body">
 						<h5 class="card-title">Обновление количества</h5>
 						<p class="card-text">Обновление количества и цены в базе данных</p>
-						<a href="{{ route('admin.import.quantity') }}" class="btn btn-success btn-block">Warner Music - WMR</a>
+						<a href="{{ route('admin.import.quantity', ['sku' => 'WMR-']) }}" class="btn btn-success btn-block">Warner Music - WMR</a><br>
+						<h5 class="card-title">Обновление Цены - Склад Bsides</h5>
+						<a href="{{ route('admin.import.quantity', ['sku' => 'BSC-']) }}" class="btn btn-success btn-block">B-Sides - BSC</a>
 					</div>
 				</div>
 			</div>

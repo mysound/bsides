@@ -29,8 +29,12 @@ class QuantityImport implements ToModel, WithHeadingRow
         $product = Product::where('sku', $sku)->first();
 
         if($product) {
-            $product->quantity = 1;
-            $product->price = $this->price($row['itemprice'], $row['exchangekey'], $this->skutitle, $row['category_id']);
+            if($this->skutitle == 'BSC-') {
+                $product->price = $this->price($row['itemprice'], $row['exchangekey'], $this->skutitle, $row['category_id']);
+            } else {
+                $product->quantity = 1;
+                $product->price = $this->price($row['itemprice'], $row['exchangekey'], $this->skutitle, $row['category_id']);
+            }
         }
 
         return $product;
