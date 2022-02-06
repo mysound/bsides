@@ -26,6 +26,7 @@
 			<div class="col-md-12">
 				<form class="form-inline" method="GET" action="{{ route('admin.product.index') }}">
 					@csrf
+					<input class="form-control mr-sm-2" type="text" name="idFilter" placeholder="ID" value="{{ request()->idFilter }}">
 					<input class="form-control mr-sm-2" type="text" name="nameFilter" placeholder="Name" value="{{ request()->nameFilter }}">
 					<input class="form-control mr-sm-2" type="text" name="titleFilter" placeholder="Title" value="{{ request()->titleFilter }}">
 					<input class="form-control mr-sm-2" type="text" name="skuFilter" placeholder="SKU" value="{{ request()->skuFilter }}">

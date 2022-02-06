@@ -22,15 +22,16 @@ class ProductsController extends Controller
     {
         $products = Product::with('images', 'counter');
 
-        $products = (new ProductsFilter($products, $request))->apply()->paginate(10)
+        $products = (new ProductsFilter($products, $request))->apply()->paginate(20)
                         ->appends([
                             'sortPrice'     => $request->sortPrice,
                             'sortViews'     => $request->sortViews,
                             'sortCart'      => $request->sortCart,
                             'noImg'         => $request->noImg,
-                            'searchFilter'   => $request->searchFilter,
-                            'nameFilter'     => $request->nameFilter,
-                            'titleFilter'    => $request->titleFilter,
+                            'searchFilter'  => $request->searchFilter,
+                            'idFilter'      => $request->idFilter,
+                            'nameFilter'    => $request->nameFilter,
+                            'titleFilter'   => $request->titleFilter,
                             'skuFilter'     => $request->skuFilter,
                             'catFilter'     => $request->catFilter
                         ]);

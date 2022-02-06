@@ -12,6 +12,13 @@ class ProductsFilter extends QueryFilter
 						->orwhere('upc', $value);
 	}
 
+	public function idFilter($value)
+	{
+		if($value) {
+			$this->builder->find($value);
+		}
+	}
+
 	public function nameFilter($value)
 	{
 		$this->builder->where('name', 'LIKE', '%' . $value. '%');
