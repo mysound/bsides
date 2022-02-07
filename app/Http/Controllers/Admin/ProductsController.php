@@ -27,6 +27,7 @@ class ProductsController extends Controller
                             'sortPrice'     => $request->sortPrice,
                             'sortViews'     => $request->sortViews,
                             'sortCart'      => $request->sortCart,
+                            'sortById'      => $request->sortById,
                             'noImg'         => $request->noImg,
                             'searchFilter'  => $request->searchFilter,
                             'idFilter'      => $request->idFilter,

@@ -46,7 +46,27 @@
 		@endif
 		<table class="table table-striped">
 			<thead>
-				<th>ID</th>
+				<th>
+					@if(request()->sortById == 'ASC')
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField, 
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter, 
+							'skuFilter' => request()->skuFilter, 
+							'sortById' => 'DESC'
+						]) }}">ID &#9650;</a>
+					@elseif(request()->sortById == 'DESC' or request()->sortById == '')
+						<a href="{{ route('admin.product.index', [
+							'searchField' => request()->searchField, 
+							'nameFilter' => request()->nameFilter, 
+							'titleFilter' => request()->titleFilter, 
+							'catFilter' => request()->catFilter, 
+							'skuFilter' => request()->skuFilter, 
+							'sortById' => 'ASC'
+						]) }}">ID @if(!request()->sortById == '')&#9660;@endif</a>
+					@endif
+				</th>
 				<th>
 					@if(request()->noImg)
 						<a href="{{ route('admin.product.index', ['noImg' => false]) }}">Images</a>

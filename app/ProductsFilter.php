@@ -71,4 +71,9 @@ class ProductsFilter extends QueryFilter
 	{
 		$this->builder->orderBy('quantity', $value);
 	}
+
+	public function sortById($value)
+	{
+		$this->builder->orderBy('id', $value);
+	}
 }
