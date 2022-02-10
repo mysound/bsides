@@ -19,6 +19,11 @@
 					<li style="margin: 10px;"><a href="{{ route('admin.export.yamarket') }}" class="btn btn-warning btn-block">Товары в наличии Yandex.Market</a></li>
 				</ul>
 			</div>
+			<div class="col-md-4">
+				<ul>
+					<li style="margin: 10px;"><a href="{{ route('admin.export.yamarketDBS') }}" class="btn btn-warning btn-block">DBS Yandex.Market </a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Exports\ProductsExport;
 use App\Exports\YandexExport;
+use App\Exports\YandexDBSExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
@@ -27,5 +28,10 @@ class ExportController extends Controller
     public function yandexMarket()
     {
         return Excel::download(new YandexExport, 'ya.xlsx');
+    }
+
+    public function yandexMarketDBS()
+    {
+        return Excel::download(new YandexDBSExport, 'ya.xlsx');
     }
 }

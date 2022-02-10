@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('/export', 'ExportController@index')->name('admin.export');
 	Route::get('/export/main', 'ExportController@mainCatalog')->name('admin.export.main');
 	Route::get('/export/yamrket', 'ExportController@yandexMarket')->name('admin.export.yamarket');
+	Route::get('/export/yamrketDBS', 'ExportController@yandexMarketDBS')->name('admin.export.yamarketDBS');
 	Route::get('/import', 'ImportController@index')->name('admin.import');
 	Route::get('/import/create', 'ImportController@create')->name('admin.import.create');
 	Route::post('/import', 'ImportController@store')->name('admin.import.store');
