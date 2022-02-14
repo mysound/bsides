@@ -25,9 +25,9 @@ class YandexDBSExport implements FromCollection, WithMapping
     {
     	return [
     		$row->id,
-    		$row->category->ru_title . ' ' . $row->name . ' ' . $row->title,
+    		$this->itemTitle($row),
     		$this->imagelink($row),
-    		$row->name . ' - ' . $row->title . ' в формате ' . $row->category->title,
+    		$this->itemDescription($row),
     		'Музыка',
     		$row->name,
     		$row->upc,
@@ -38,7 +38,7 @@ class YandexDBSExport implements FromCollection, WithMapping
     		'Музыкальная и видеопродукция',
     		'',
     		'',
-    		'',
+    		$this->itemProperty($row),
     		$row->slugurl(),
     		'',
     		$row->price + 600,
@@ -74,5 +74,31 @@ class YandexDBSExport implements FromCollection, WithMapping
     	}
 
     	return '1';
+    }
+
+    public function itemDescription($product)
+    {
+    	$description = $product->name . ' - ' . $product->title . ' в формате ' . $product->category->title;
+    	
+    	return $description;
+    }
+
+    public function itemTitle($product)
+    {
+    	$title = $product->name . ' - ' . $product->title . ' ('. $product->category->title .' '. $product->category->ru_title.') ';
+
+    	return $title;
+    }
+
+    public function itemProperty($product)
+    {
+    	$property = 'UPC: |'.$product->upc.' ;';
+    	if ($product->short_description) {
+    		$property = $property . 'Описание: |'.$product->short_description.' ;';
+    	}
+    	$property = $property . 'Формат: |'.$product->category->title.' ;';
+    	$property = $property . 'Количество дисков: |'.$product->item_qty.' ;';
+
+    	return $property;
     }
 }
